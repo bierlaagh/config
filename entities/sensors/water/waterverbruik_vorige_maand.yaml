@@ -1,0 +1,8 @@
+---
+platform: template
+sensors:
+  waterverbruik_vorige_maand:
+    friendly_name: Waterverbruik Vorige Maand
+    unit_of_measurement: L
+    icon_template: "mdi:water"
+    value_template: "{{ state_attr('sensor.waterverbuik_deze_maand','last_period') }}"

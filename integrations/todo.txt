@@ -1,0 +1,4 @@
+cloud.yaml - google assistant vanuit HA vullen
+Homekit.yaml - uitzoeken hoe deze werkt
+input_daytime
+wat kan season.yaml doen.

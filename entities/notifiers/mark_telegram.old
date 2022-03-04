@@ -1,0 +1,4 @@
+---
+name: mark_telegram
+platform: telegram
+chat_id: !secret telegram_mark

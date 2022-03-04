@@ -1,0 +1,16 @@
+---
+# Entity configuration for Google Assistant.
+#
+# I use this to customize how the device shows up in Google Assistant.
+#
+# https://www.home-assistant.io/integrations/google_assistant/#entity_config
+#
+input_boolean.media_woonkamer:
+  name: media woonkamer
+  aliases:
+    - woonkamer media
+    - tv kijken
+    - televisie kijken
+    - ziggo kijken
+    - kijk ziggo
+  room: Woonkamer

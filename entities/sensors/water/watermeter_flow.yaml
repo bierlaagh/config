@@ -1,0 +1,8 @@
+---
+platform: template
+sensors:
+  watermeter_flow:
+    friendly_name: "Huidige waterflow"
+    value_template: '{{states.sensor.watermeter.attributes["waterflow"] }}'
+    unit_of_measurement: "l/m"
+    icon_template: "mdi:water-pump"

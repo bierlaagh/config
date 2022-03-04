@@ -1,0 +1,4 @@
+---
+  energieverbruik_wasdroger_daily:
+    source: sensor.power_meter_plug_4_energy
+    cycle: daily

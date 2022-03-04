@@ -1,0 +1,30 @@
+{
+  "nodes": {
+    "b66a5345edf3d257": {
+      "lastPayload": {
+        "state": 51,
+        "attributes": {}
+      }
+    },
+    "cde744f768f8445e": {
+      "lastPayload": {
+        "state": -8,
+        "attributes": {
+          "state": null
+        }
+      }
+    },
+    "3be1e9063c9fbdcc": {
+      "lastPayload": {
+        "state": 4623786,
+        "attributes": {}
+      }
+    },
+    "5d1859b1323c1d09": {
+      "lastPayload": {
+        "state": 1543034,
+        "attributes": {}
+      }
+    }
+  }
+}

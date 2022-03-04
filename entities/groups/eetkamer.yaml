@@ -1,0 +1,9 @@
+---
+  group:
+  eetkamer: 
+      name: eetkamer
+      entities:
+      - light.led_eettafel_1
+      - light.led_eettafel_2
+      - light.led_eettafel_3
+      - light.led_eettafel_4

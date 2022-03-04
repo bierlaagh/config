@@ -1,0 +1,8 @@
+---
+platform: template
+sensors:
+  doucheverbruik_gisteren:
+    friendly_name: "waterverbruik douchen gisteren"
+    unit_of_measurement: "L"
+    icon_template: "mdi:counter"
+    value_template: "{{ state_attr('sensor.waterverbuik_douchen_vandaag','last_period') }}"

@@ -1,0 +1,4 @@
+---
+  waterverbuik_douchen_dit_uur:
+    source: sensor.waterverbruik_douchen
+    cycle: hourly

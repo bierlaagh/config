@@ -1,0 +1,11 @@
+---
+  group:
+  woonkamer:
+    name: woonkamer
+    entities:
+    - light.light_ikea_led_driver_wandkast
+    - light.lamp_bank_2
+    - light.light_ikea_g10_hoek_bank
+    - light.light_ikea_filament_bulb_fotohoek
+    - light.led_strip_woonkamer
+    - light.first_led_hardware_instance

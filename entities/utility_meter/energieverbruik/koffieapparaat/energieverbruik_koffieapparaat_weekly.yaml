@@ -1,0 +1,4 @@
+---
+  energieverbruik_koffieapparaat_weekly:
+    source: sensor.plug_tuya_power_metered_9_airfryer_energy
+    cycle: weekly

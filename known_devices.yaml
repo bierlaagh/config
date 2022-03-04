@@ -1,0 +1,14 @@
+
+device_name_1:
+  name: device_name_1
+  mac:
+  icon:
+  picture:
+  track: true
+
+iphone_x_lynn:
+  name: iphone_x_lynn
+  mac:
+  icon:
+  picture:
+  track: true

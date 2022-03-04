@@ -1,0 +1,16 @@
+---
+id: '1645365560235'  
+alias: powerplug_media_altijd_aan
+description: 'powermeter_media_altijd_aan'
+trigger:
+  - platform: device
+    type: turned_off
+    device_id: 85ea8c35ee1864831192b11182a8d157
+    entity_id: switch.plug_tuya_power_metered_4_media_woonkamer_alway_on
+    domain: switch
+action:
+  - type: turn_on
+    device_id: 85ea8c35ee1864831192b11182a8d157
+    entity_id: switch.plug_tuya_power_metered_4_media_woonkamer_alway_on
+    domain: switch
+mode: single

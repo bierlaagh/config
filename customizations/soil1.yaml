@@ -1,0 +1,7 @@
+---
+sensor.soil1:
+    templates:
+        icon: "mdi:flower"
+        icon_color: >
+          if (state =< 65) return [204,0,0]
+          return [102,204,0]

@@ -1,0 +1,7 @@
+---
+  group:
+  keuken: 
+      name: keuken lampen
+      entities:
+      - light.plafondlamp_keuken
+      - light.led_keuken

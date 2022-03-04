@@ -1,0 +1,4 @@
+---
+waterverbuik_douchen_deze_maand:
+  source: sensor.waterverbruik_douchen
+  cycle: monthly

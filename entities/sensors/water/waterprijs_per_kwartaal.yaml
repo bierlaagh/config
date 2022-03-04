@@ -1,0 +1,13 @@
+---
+platform: template
+sensors:
+  waterprijs_per_kwartaal:
+    friendly_name: "Kosten Waterverbruik Dit Kwartaal"
+    unit_of_measurement: "EUR"
+    icon_template: "mdi:currency-eur"
+    value_template: >-
+      {% set a = states('sensor.waterverbuik_dit_kwartaal') | float %}
+      {% set b = states('input_number.waterprijs_per_liter') | float %}
+      {% set c = states('input_number.belasting_op_leidingwater') | float  %}
+      {% set d = states('input_number.vastrecht_water') | float / 4 %}
+      {{ (((a * b) + a * c) + d) | round(2) }}

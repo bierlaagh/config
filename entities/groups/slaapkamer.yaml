@@ -1,0 +1,7 @@
+---
+  group:
+  slaapkamer: 
+      name: slaapkamer lampen
+      entities:
+      - light.bfa989cd6c5aa6d50fvtxz
+      - light.bfe0726c9b3476279887lh

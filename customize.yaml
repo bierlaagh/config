@@ -1,0 +1,10 @@
+sensor.ziggo_next_channel:
+  unique_id: next_box_channel
+zone.home:
+  friendly_name: thuis
+media_player.onkyo:
+  friendly_name: onkyo versterker
+sensor.powerplug_1_daily_energy:
+  friendly_name: energy_aquarium_daily
+binary_sensor.ac_09543ce_11:
+  device_class: light

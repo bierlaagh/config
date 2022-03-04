@@ -1,0 +1,8 @@
+---
+platform: template
+sensors:
+    s18b20_3_slaapkamer:
+      friendly_name: "temperatuur slaapkamer"
+      unit_of_measurement: '°C'
+      value_template: >-
+          {{ states.sensor.tasmota_ds18b20_3_temperature.state | float + 0.6 }}

@@ -1,0 +1,8 @@
+---
+# Watermeter toonWater
+# UTILITYS WATERMETER
+# moved to ../entities/utility_meter/waterverbruik
+# Watermeter toonWater 
+# Sensors moved to "../entities/sensors/water/"
+# SENSOREN WATERVERBRUIK PER PERIODE
+# moved to "../entities/sensors/water/"

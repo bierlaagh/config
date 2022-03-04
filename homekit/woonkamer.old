@@ -1,0 +1,14 @@
+---
+#
+# List of entities that is exposed to Google Assistant
+# From area: Living Room
+#
+- light.led_wandkast
+- light.lamp_bank_2
+- light.lamp_hoek_bank_2
+- light.lamp_fotohoek_2
+- light.led_strip_woonkamer
+- switch.ac_09543ce_11
+- light.first_led_hardware_instance
+- climate.thermostat
+- light.eettafel

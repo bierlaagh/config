@@ -1,0 +1,8 @@
+---
+platform: template
+sensors:
+  watermeter_quantity:
+    friendly_name: "Huidige watermeterstand"
+    value_template: '{{states.sensor.watermeter.attributes["waterquantity"] }}'
+    unit_of_measurement: "L"
+    icon_template: "mdi:water"

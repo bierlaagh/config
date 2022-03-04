@@ -1,0 +1,16 @@
+---
+# Entity configuration for Google Assistant.
+#
+# I use this to customize how the device shows up in Google Assistant.
+#
+# https://www.home-assistant.io/integrations/google_assistant/#entity_config
+#
+light.eettafel:
+  name: eettafel
+  aliases:
+    - eetkamer
+    - diningroom
+    - eettafel
+    - lampen eettafel
+  room: woonkamer
+

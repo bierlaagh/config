@@ -1,0 +1,15 @@
+---
+# Entity configuration for Google Assistant.
+#
+# I use this to customize how the device shows up in Google Assistant.
+#
+# https://www.home-assistant.io/integrations/google_assistant/#entity_config
+#
+switch.koffieapparaat:
+  name: koffieapparaat
+  aliases:
+    - koffieapparaat
+    - cofeemachine
+    - koffiemachine
+    - espressoapparaat
+  room: Keuken

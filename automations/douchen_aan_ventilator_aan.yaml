@@ -1,0 +1,16 @@
+---
+  alias: douchen aan ventilator aan
+  description: ''
+  id: '1616449799047'
+  trigger:
+  - type: moist
+    platform: device
+    device_id: a26575e155a25af7d316e306ede1a14e
+    entity_id: binary_sensor.sensor_aqara_water_leak_badkamer_water_leak
+    domain: binary_sensor
+  action:
+    - type: turn_on
+      device_id: 877b325b4ffaf5ea3447a5a518b55503
+      entity_id: switch.ac_06ead9a_2
+      domain: switch
+  mode: single

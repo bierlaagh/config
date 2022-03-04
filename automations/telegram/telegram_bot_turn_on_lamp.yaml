@@ -1,0 +1,15 @@
+---
+# part of the telegram test  
+  id: '1642443812119'
+  alias: Telegram bot turn on lamp
+  description: ''
+  trigger:
+  - platform: event
+    event_type: telegram_command
+    event_data:
+      command: /lamp-on
+  action:
+  - service: light.turn_on
+    target:
+      entity_id: light.eettafel
+  mode: single

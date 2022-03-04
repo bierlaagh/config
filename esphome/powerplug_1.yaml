@@ -1,0 +1,167 @@
+# Aquarium
+substitutions:
+  plug_name: powerplug_1
+esphome:
+  name: ${plug_name}
+  platform: ESP8266
+  board: esp8285
+
+# WiFi connection
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_pwd
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: !secret esp_ha_api_ww
+ota:
+  password: !secret esp_ha_api_ww
+
+# Enable Web server
+web_server:
+  port: 80
+
+# Sync time with Home Assistant
+time:
+  - platform: homeassistant
+    id: homeassistant_time
+
+# Text sensors with general information
+text_sensor:
+  - platform: version
+    name: version
+  - platform: wifi_info
+    ip_address:
+      name: ${plug_name}_ip
+    ssid:
+      name: ${plug_name}_ssid
+    bssid:
+      name: ${plug_name}_bssid
+
+sensor:
+  # Uptime sensor
+  - platform: uptime
+    name: "${plug_name}_uptime"
+  # WiFi Signal sensor
+  - platform: wifi_signal
+    name: "${plug_name}_wifi_signal"
+    update_interval: 15s
+  # Power sensor
+  - platform: hlw8012
+    sel_pin:
+      number: GPIO12
+      inverted: true
+    cf_pin: GPIO04
+    cf1_pin: GPIO05
+    change_mode_every: 3
+    update_interval: 5s
+    # Current sensor
+    current:
+      name: "${plug_name}_current"
+      unit_of_measurement: A
+      accuracy_decimals: 3
+      filters:
+      # Map from sensor -> measured value
+        - calibrate_linear:
+          - 0.08401 -> 0.074
+          - 0.08691 -> 0.077
+          - 0.17381 -> 0.14
+          - 0.18250 -> 0.15
+          - 0.20278 -> 0.16
+          - 5.75903  -> 4.55
+          - 5.77352 -> 4.56
+          - 11.41957 -> 8.99
+          - 11.43985 -> 9.00
+    # Make everything below 0.01A appear as just 0A.
+    # Furthermore it corrects 0.013A for the power usage of the plug.
+        - lambda: if (x < (0.01 + 0.013)) return 0; else return (x - 0.013);
+    # Voltage sensor
+    voltage:
+      name: "${plug_name}_auto_voltage"
+      unit_of_measurement: V
+      accuracy_decimals: 1
+      filters:
+       # Map from sensor -> measured value
+        - calibrate_linear:
+          - 0.0 -> 0.0
+          - 698.35980  -> 231.0
+          - 703.42688 -> 233.0
+          - 705.47009 -> 234.0
+          - 705.55176 -> 235.0
+  # Power sensor
+    power:
+      id: power
+      name: "${plug_name}_power"
+      unit_of_measurement: W
+      accuracy_decimals: 0
+      filters:
+      # Map from sensor -> measured value
+        - calibrate_linear:
+          - 0.0 -> 0.78
+          - 68.26784 -> 10.27
+          - 215.14713 -> 30.66
+          - 265.4880 -> 38.18
+          - 231.69691 -> 33.18
+          - 260.65903 -> 37.28
+          - 264.79648 -> 37.71
+          - 14592.76758 -> 2036.41
+          - 14696.20410 -> 2044.42
+          - 14710.68457 -> 2057
+    # Make everything below 2W appear as just 0W.
+    # Furthermore it corrects 1.14W for the power usage of the plug.
+        - lambda: if (x < (2 + 0.78)) return 0; else return (x - 0.78);
+  # Total daily energy sensor
+  - platform: total_daily_energy
+    name: "${plug_name}_daily_energy"
+    power_id: power
+    filters:
+      # Multiplication factor from W to kW is 0.001
+      - multiply: 0.001
+    unit_of_measurement: kWh
+
+binary_sensor:
+  # Binary sensor for the button press
+  - platform: gpio
+    name: "${plug_name}_button"
+    pin:
+      number: GPIO3
+      inverted: true
+    on_press:
+      - switch.toggle: relay
+
+switch:
+  # Switch to restart the plug
+  - platform: restart
+    name: "${plug_name}_restart"
+  # Switch to toggle the relay
+  - platform: gpio
+    id: relay
+    name: "${plug_name}_switch"
+    pin: GPIO14
+    on_turn_on:
+      - light.turn_on: led
+    on_turn_off:
+      - light.turn_off: led
+    restore_mode: ALWAYS_ON
+output:
+  # Relay state led
+  - platform: esp8266_pwm
+    id: state_led
+    pin:
+      number: GPIO1
+      inverted: true
+
+light:
+  # Relay state light
+  - platform: monochromatic
+    output: state_led
+    id: led
+
+# Uses the red LED as a status indicator
+status_led:
+  pin:
+    number: GPIO13
+    inverted: true    

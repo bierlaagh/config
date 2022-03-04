@@ -1,0 +1,4 @@
+---
+waterverbuik_dit_jaar:
+  source: sensor.watermeter_quantity
+  cycle: yearly

@@ -1,0 +1,25 @@
+---
+# turn of the coffee machine if it is not used for the last 30 minutes
+# it looks if de power usahe goes below 50 watt for a period of time.
+# if so it turnes off the powerswitch    
+  id: '1617647495253'
+  alias: koffie apparaat uit bij 30 min geen gebruik
+  description: zet koffie apparaat als deze 30 min niet is gebruikt 
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.power_meter_plug_5_energy
+    below: '50'
+    for:
+      hours: 0
+      minutes: 30
+      seconds: 0
+    attribute: power
+  condition:
+  - condition: state
+    entity_id: switch.power_meter_plug_5
+    state: 'on'
+  action:
+  - service: switch.turn_off
+    target:
+      entity_id: switch.power_meter_plug_5
+  mode: single

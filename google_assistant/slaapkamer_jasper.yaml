@@ -1,0 +1,9 @@
+---
+#
+# List of entities that is exposed to Google Assistant
+# From area: Living Room
+#
+  - switch.powerplug_jasper_ikea
+  - light.gu10_cct2
+  - ight.gu10_cct_1
+  - light.lsc_light_strip_rgbcw_wifi

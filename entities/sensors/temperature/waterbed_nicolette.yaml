@@ -1,0 +1,8 @@
+---
+platform: template
+sensors:
+    waterbed_nicolette:
+      friendly_name: "waterbed nicolette"
+      unit_of_measurement: '°C'
+      value_template: >-
+          {{ states.sensor.tasmota_ds18b20_1_temperature.state | float + 0.6 }}

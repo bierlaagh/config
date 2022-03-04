@@ -1,0 +1,13 @@
+--- 
+  id: '1642447127793'
+  alias: lamp callback
+  trigger:
+  - platform: event
+    event_type: telegram_callback
+    event_data:
+      data: /lamp-off
+  action:
+  - service: light.turn_off
+    target:
+      entity_id: light.lightgroup_eettafel
+  mode: single

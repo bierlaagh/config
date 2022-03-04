@@ -1,0 +1,230 @@
+<script type="text/javascript">
+    RED.nodes.registerType('hourglass',{
+        category: 'function',
+        color: '#a6bbcf',
+        defaults: {
+            name: {value:""},
+            persistId: {value:""},
+            humanizeLocale: {value:""}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "hourglass.png",
+        label: function() {
+            return this.name||"Hourglass";
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="hourglass">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-persistId"><i class="icon-tag"></i> Unique ID for persisting</label>
+        <input type="text" id="node-input-persistId" placeholder="Persisting ID">
+    </div>
+    <div class="form-tips">
+        <b>Tip: </b>Persisting ID is needed only in cases when node is used inside sub-flows. <br/>
+        By default internal node ID is used as unique persisting ID but when node is a part of sub-flow,
+        then new node ID is generated on every restart of Node-Red so it needs some specified ID to correctly
+        restore/save its state.
+    </div>
+    <div class="form-row">
+        <label for="node-input-humanizeLocale"><i class="icon-tag"></i> Locale for humanized time</label>
+        <select id="node-input-humanizeLocale">
+            <option value="">Default (English)</option>
+            <option value="af">Afrikaans</option>
+            <option value="ar-dz">Arabic (Algeria)</option>
+            <option value="ar-kw">Arabic (Kuwait)</option>
+            <option value="ar-ly">Arabic (Libya)</option>
+            <option value="ar-ma">Arabic (Morocco)</option>
+            <option value="ar-sa">Arabic (Saudi Arabia)</option>
+            <option value="ar-tn">Arabic (Tunisia)</option>
+            <option value="ar">Arabic</option>
+            <option value="az">Azerbaijani</option>
+            <option value="be">Belarusian</option>
+            <option value="bg">Bulgarian</option>
+            <option value="bm">Bambara</option>
+            <option value="bn">Bengali</option>
+            <option value="bo">Tibetan</option>
+            <option value="br">Breton</option>
+            <option value="bs">Bosnian</option>
+            <option value="ca">Catalan</option>
+            <option value="cs">Czech</option>
+            <option value="cv">Chuvash</option>
+            <option value="cy">Welsh</option>
+            <option value="da">Danish</option>
+            <option value="de-at">German (Austria)</option>
+            <option value="de-ch">German (Switzerland)</option>
+            <option value="de">German</option>
+            <option value="dv">Divehi</option>
+            <option value="el">Greek</option>
+            <option value="en-au">English (Australia)</option>
+            <option value="en-ca">English (Canada)</option>
+            <option value="en-gb">English (United Kingdom)</option>
+            <option value="en-ie">English (Ireland)</option>
+            <option value="en-nz">English (New Zealand)</option>
+            <option value="eo">Esperanto</option>
+            <option value="es-do">Spanish (Dominican Republic)</option>
+            <option value="es-us">Spanish (United States)</option>
+            <option value="es">Spanish</option>
+            <option value="et">Estonian</option>
+            <option value="eu">Basque</option>
+            <option value="fa">Persian</option>
+            <option value="fi">Finnish</option>
+            <option value="fo">Faroese</option>
+            <option value="fr-ca">French (Canada)</option>
+            <option value="fr-ch">French (Switzerland)</option>
+            <option value="fr">French</option>
+            <option value="fy">Western Frisian</option>
+            <option value="gd">Scottish Gaelic</option>
+            <option value="gl">Galician</option>
+            <option value="gu">Gujarati</option>
+            <option value="he">Hebrew</option>
+            <option value="hi">Hindi</option>
+            <option value="hr">Croatian</option>
+            <option value="hu">Hungarian</option>
+            <option value="hy-am">Armenian (Armenia)</option>
+            <option value="id">Indonesian</option>
+            <option value="is">Icelandic</option>
+            <option value="it">Italian</option>
+            <option value="ja">Japanese</option>
+            <option value="jv">Javanese</option>
+            <option value="ka">Georgian</option>
+            <option value="kk">Kazakh</option>
+            <option value="km">Khmer</option>
+            <option value="kn">Kannada</option>
+            <option value="ko">Korean</option>
+            <option value="ky">Kirghiz</option>
+            <option value="lb">Luxembourgish</option>
+            <option value="lo">Lao</option>
+            <option value="lt">Lithuanian</option>
+            <option value="lv">Latvian</option>
+            <option value="me">Montenegrin</option>
+            <option value="mi">Maori</option>
+            <option value="mk">Macedonian</option>
+            <option value="ml">Malayalam</option>
+            <option value="mr">Marathi</option>
+            <option value="ms-my">Malay (Malaysia)</option>
+            <option value="ms">Malay</option>
+            <option value="mt">Maltese</option>
+            <option value="my">Burmese</option>
+            <option value="nb">Norwegian Bokmål</option>
+            <option value="ne">Nepali</option>
+            <option value="nl-be">Dutch (Belgium)</option>
+            <option value="nl">Dutch</option>
+            <option value="nn">Norwegian Nynorsk</option>
+            <option value="pa-in">Punjabi (India)</option>
+            <option value="pl">Polish</option>
+            <option value="pt-br">Portuguese (Brazil)</option>
+            <option value="pt">Portuguese</option>
+            <option value="ro">Romanian</option>
+            <option value="ru">Russian</option>
+            <option value="sd">Sindhi</option>
+            <option value="se">Northern Sami</option>
+            <option value="si">Sinhala</option>
+            <option value="sk">Slovak</option>
+            <option value="sl">Slovenian</option>
+            <option value="sq">Albanian</option>
+            <option value="sr-cyrl">Serbian (Cyrillic)</option>
+            <option value="sr">Serbian</option>
+            <option value="ss">Swati</option>
+            <option value="sv">Swedish</option>
+            <option value="sw">Swahili</option>
+            <option value="ta">Tamil</option>
+            <option value="te">Telugu</option>
+            <option value="tet">Tetum</option>
+            <option value="th">Thai</option>
+            <option value="tl-ph">Tagalog (Philippines)</option>
+            <option value="tlh">Klingon</option>
+            <option value="tr">Turkish</option>
+<!--            <option value="tzl">tzl</option>-->
+<!--            <option value="tzm-latn">tzm (Latin)</option>-->
+<!--            <option value="tzm">tzm</option>-->
+            <option value="uk">Ukrainian</option>
+            <option value="ur">Urdu</option>
+            <option value="uz-latn">Uzbek (Latin)</option>
+            <option value="uz">Uzbek</option>
+            <option value="vi">Vietnamese</option>
+<!--            <option value="x-pseudo">x-pseudo</option>-->
+            <option value="yo">Yoruba</option>
+            <option value="zh-cn">Chinese (China)</option>
+            <option value="zh-hk">Chinese (Hong Kong SAR China)</option>
+            <option value="zh-tw">Chinese (Taiwan)</option>
+        </select>
+    </div>
+</script>
+
+<script type="text/html" data-help-name="hourglass">
+    <p>Node calculating elapsed time</p>
+
+    <h3>Inputs</h3>
+    <dl class="message-properties">
+        <dt>command <span class="property-type">string</span></dt>
+        <dd>command to the node (see possible commands below)</dd>
+        <dt class="optional">status <span class="property-type">boolean</span></dt>
+        <dd> use "true" to report current status of the calculation along with performing requested action</dd>
+        <dt class="optional">payload <span class="property-type">string</span></dt>
+        <dd> for msg.command="alarm" specifies the alarm time (see possible formats below)</dd>
+        <dt class="optional">recurrent <span class="property-type">string | boolean</span></dt>
+        <dd> for msg.command="alarm" specifies whether alarm should be recurrent</dd>
+        <dt class="optional">period <span class="property-type">string</span></dt>
+        <dd> for msg.command="alarm" and recurrent="true" specifies recurrent alert period if it differs from the alarm time
+            (see possible formats below)
+        </dd>
+    </dl>
+
+    <h3>Outputs</h3>
+    <dl class="message-properties">
+        <dt>started <span class="property-type">boolean</span></dt>
+        <dd>specifies whether calculation is active now</dd>
+        <dt>elapsed.millis <span class="property-type">long</span></dt>
+        <dd>time in milliseconds, specifies the time elapsed since calculation was started</dd>
+        <dt>elapsed.human <span class="property-type">string</span></dt>
+        <dd>human representation of the elapsed time (like '2 days')</dd>
+        <dt>elapsed.time <span class="property-type">object</span></dt>
+        <dd>has sub-properties of days/hours/minutes/seconds/milliseconds for the elapsed time</dd>
+    </dl>
+
+    <h3>Details</h3>
+    <p>This node could be used to calculate time elapsed since some initial moment till current time.</p>
+
+    <p>Calculation could be stopped (paused) and started (resumed) many times. Also, the node persists all required information
+        between restarts of Node-RED to the file system, so you don't need to worry about recovery of your data.</p>
+
+    <p>One common case of using this node is calculation of the time when some device is working (operating hour counters 'OHC').
+        In addition, it also can alert you when it's time to do some maintenance work or change life-limited parts.
+        Another typical use case is the measuring of time durations (e.g. signal pulse widths, process durations, motion sensor presence times, etc.).</p>
+
+    <h3>Commands</h3>
+    <p>Every input message should have <code>command</code> property. Supported commands are:</p>
+    <p><code>start</code> - starts (or resumes) time measuring</p>
+    <p><code>resume</code> - synonym of <code>start</code></p>
+    <p><code>stop</code> - stops (or pauses) time measuring</p>
+    <p><code>pause</code> - synonym of <code>stop</code></p>
+    <p><code>reset</code> - resets measured value to 00:00. In the case of a running time measuring the value continues to count from 00:00</p>
+    <p><code>status</code> - reports the actual status of the measured value. See output properties in the <b>Outputs</b> section</p>
+    <p><code>alarm</code> - adds new alarm to the node (NOTE: alarms are not persisted and recovered after restart of Node-Red).<br/>
+        See input properties in the <b>Inputs</b> section<br/>
+        Use <code>msg.recurrent</code> = <b>true</b> to send alarm event periodically, default period is the same as alarm time specified by payload property<br/>
+        Use <code>msg.period</code> to specify period of recurrent event if it differs from the alarm time (the same format is used)<br/>
+        Output message when alarm is fired is same as the message that was used to add the alarm plus extra properties used in the <code>status</code> command
+    </p>
+    <p><code>remove-alarms</code> - cancels and removes all alarms</p>
+
+    <h3>Alarm time formats</h3>
+    <code>payload</code> / <code>period</code> properties contain text representation of the time when alarm should be triggered. Possible formats are:<br/>
+    <code>8:00</code> - for hours with minutes<br/>
+    <code>9:30:30</code> - for hours with minutes and seconds<br/>
+    <code>7.00:00:00</code> - for days with time<br/>
+    <code>P1Y2M3D</code> - for years/month/days<br/>
+    For more information you could check <a href="https://momentjs.com/docs/#/durations/creating/">moment.js</a> docs<br/>
+
+    <h3>References</h3>
+    <ul>
+        <li><a href="https://github.com/eschava/node-red-contrib-hourglass">GitHub</a> - the node github repository</li>
+        <li><a href="https://momentjs.com/docs/#/durations/creating/">moment.js</a> - possible alarm time formats</li>
+    </ul>
+</script>

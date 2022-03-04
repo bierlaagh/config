@@ -1,0 +1,4 @@
+---
+waterverbuik_deze_maand:
+  source: sensor.watermeter_quantity
+  cycle: monthly

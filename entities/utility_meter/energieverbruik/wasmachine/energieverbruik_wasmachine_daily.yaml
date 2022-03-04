@@ -1,0 +1,4 @@
+---
+  energieverbruik_wasmachine_daily:
+    source: sensor.plug_tuya_power_metered_12_wasmachine_energy
+    cycle: daily

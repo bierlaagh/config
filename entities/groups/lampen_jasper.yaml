@@ -1,0 +1,7 @@
+---
+  group:
+  slaapkamer_jasper: 
+      name: slaapkamer jasper
+      entities:
+      - light.gu10_cct2
+      - light.gu10_cct_2

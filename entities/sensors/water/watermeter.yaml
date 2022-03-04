@@ -1,0 +1,7 @@
+---
+platform: rest
+name: watermeter
+json_attributes:
+  - waterflow
+  - waterquantity
+resource: !secret watermeter_ip

@@ -1,0 +1,20 @@
+---
+# Automation to test telegram and how i can use it to automate a chalange response
+# in this case i already made a telegram bot wich can sent me messages
+# also made 2 commands the bot can understand  
+  id: '1642431125775'
+  alias: test telegram
+  description: ''
+  trigger:
+  - platform: time
+    at: 00:00:00
+  action:
+  - service: notify.mark_telegram
+    data:
+      title: test bericht
+      message: That's an example that _sends_ a *formatted* message with a custom
+        inline keyboard.
+      data:
+        inline_keyboard:
+        - Lamp aan:/lamp-on, Lamp uit:/lamp-off
+  mode: single

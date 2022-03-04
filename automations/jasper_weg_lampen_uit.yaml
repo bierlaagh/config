@@ -1,0 +1,18 @@
+---
+# when jasper leaves the house the lights in his room wil automaticly turned off  
+  id: '1617723804999'
+  alias: Jasper weg lampen uit
+  description: Jasper weg lampen op zijn kamer uit
+  trigger:
+  - platform: zone
+    entity_id: person.jasper_bierlaagh
+    zone: zone.home
+    event: leave
+  action:
+  - service: light.turn_off
+    target:
+      device_id:
+      - c19a67f8e10d3581c13d4391adc7e833
+      - 23885973c5decd67f87e59d48115246d
+      - 92715a7c2d20dd04cf8871c42865a03e
+  mode: single

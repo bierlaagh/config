@@ -1,0 +1,4 @@
+---
+waterverbuik_douchen_deze_week:
+  source: sensor.waterverbruik_douchen
+  cycle: weekly

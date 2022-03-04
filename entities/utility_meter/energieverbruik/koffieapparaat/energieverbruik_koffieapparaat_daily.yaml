@@ -1,0 +1,4 @@
+---
+  energieverbruik_koffieapparaat_daily:
+    source: sensor.plug_tuya_power_metered_13_koffieapparaat_energy
+    cycle: daily

@@ -1,0 +1,4 @@
+---
+waterverbruik_dit_kwartier:  
+  source: sensor.watermeter_quantity
+  cycle: quarter-hourly 

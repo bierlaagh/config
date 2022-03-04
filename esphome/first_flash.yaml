@@ -1,0 +1,29 @@
+esphome:
+  name: first_flash
+  platform: ESP8266
+  board: esp8285
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_pwd
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "First Flash Fallback Hotspot"
+    password: "NU4UYf2NITQ5"
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: "PASSWORD"
+
+ota:
+  password: "PASSWORD"
+
+# Enable Web server
+web_server:
+  port: 80
