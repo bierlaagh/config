@@ -6,8 +6,9 @@
   trigger:
   - platform: time
     at: '22:30:00'
+  condition: []
   action:
-    type: turn_off
-    device_id: f9587d0a7d96f7b12e7e1918b32bcad0
-    entity_id: switch.powerplug_aquarium
-    domain: switch
+    - service: switch.turn_off
+      data: {}
+      target:
+        entity_id: switch.plug_ikea_power_nometer_11_aquarium

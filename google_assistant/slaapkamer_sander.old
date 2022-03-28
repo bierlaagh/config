@@ -1,0 +1,11 @@
+---
+#
+# List of entities that is exposed to Google Assistant
+# From area: Living Room
+#
+  - light.led_smart_1
+  - light.led_smart_2
+  - light.led_smart_3
+  - light.led_smart_4
+  - light.led_smart_5
+  - light.led_strip_sander

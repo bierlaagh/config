@@ -1,0 +1,8 @@
+---
+#
+# List of entities that is exposed to Google Assistant
+# From area: Living Room
+#
+- light.plafond_keuken
+- light.ledstrip_keuken
+- switch.koffieapparaat

@@ -1,13 +1,14 @@
 ---
   alias: aquarium zolder aan
-  description: ''
-  id: '1616449799031'
+  description: aquarium verlichting aan
+  mode: single
   trigger:
     - platform: sun
       event: sunset
       offset: '-00:59:00'
+  condition: []
   action:
     - service: switch.turn_on
+      data: {}
       target:
-        entity_id: switch.powerplug_aquarium
-  mode: single
+        entity_id: switch.plug_ikea_power_nometer_11_aquarium

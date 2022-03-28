@@ -1,1 +1,21 @@
-
+- id: '1648210287941'
+  alias: Jasper weg apparaten uit
+  description: Jasper weg apparaten op zijn kamer uit
+  trigger:
+  - platform: zone
+    entity_id: person.jasper_bierlaagh
+    zone: zone.home
+    event: leave
+  action:
+  - service: light.turn_off
+    target:
+      device_id:
+      - c19a67f8e10d3581c13d4391adc7e833
+      - 23885973c5decd67f87e59d48115246d
+      - 92715a7c2d20dd04cf8871c42865a03e
+    data: {}
+  - service: notify.mark_telegram
+    data:
+      message: Jasper Left Home
+      title: Jasper weg
+  mode: single
