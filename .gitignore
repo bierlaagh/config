@@ -13,6 +13,7 @@ __pycache__
 .storage
 deps
 @eaDir
+custom_components
 
 # Specific file ignores
 core
