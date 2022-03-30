@@ -1,0 +1,15 @@
+---
+alias: powerplug_vriezer_zolder_altijd_aan
+description: powerplug_vriezer_zolder_altijd_aan
+trigger:
+  - platform: device
+    type: turned_off
+    device_id: 61d7acebe01507e4e6ad1982782f44ca
+    entity_id: switch.plug_tuya_power_metered_15_vriezer_zolder
+    domain: switch
+action:
+  - type: turn_on
+    device_id: 61d7acebe01507e4e6ad1982782f44ca
+    entity_id: switch.plug_tuya_power_metered_15_vriezer_zolder
+    domain: switch
+mode: single
