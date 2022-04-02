@@ -1,0 +1,4 @@
+---
+  energieverbruik_media_woonkamer_monthly:
+    source: sensor.plug_tuya_power_metered_4_media_woonkamer_alway_on_energy
+    cycle: monthly

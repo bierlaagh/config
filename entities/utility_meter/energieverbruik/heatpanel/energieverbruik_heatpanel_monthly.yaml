@@ -1,0 +1,4 @@
+---
+  energieverbruik_heatpanel_monthly:
+    source: sensor.wall_plug_heatpanel_electric_consumption_kwh
+    cycle: monthly

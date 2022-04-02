@@ -1,0 +1,14 @@
+---
+# Entity configuration for Google Assistant.
+#
+# I use this to customize how the device shows up in Google Assistant.
+#
+# https://www.home-assistant.io/integrations/google_assistant/#entity_config
+#
+input_boolean.tv_hdmi1:
+  name: HDMI
+  aliases:
+    - tv naar hdmi
+    - televisie naar hdmi
+    - tv naar digitaal
+  room: Woonkamer

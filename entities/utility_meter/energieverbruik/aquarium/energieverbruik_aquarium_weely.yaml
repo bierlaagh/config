@@ -1,0 +1,4 @@
+---
+  energieverbruik_aquarium_weely:
+    source: sensor.powerplug_1_daily_energy
+    cycle: weekly

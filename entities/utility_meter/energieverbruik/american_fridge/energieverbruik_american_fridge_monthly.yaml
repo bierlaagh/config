@@ -1,0 +1,4 @@
+---
+  energieverbruik_american_fridge_monthly:
+    source: sensor.powerplug_lg_fridge_daily_energy
+    cycle: monthly

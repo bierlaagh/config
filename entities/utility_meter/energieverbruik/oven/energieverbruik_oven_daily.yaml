@@ -1,0 +1,4 @@
+---
+  energieverbruik_oven_daily:
+    source: sensor.plug_tuya_power_metered_3_oven_energy
+    cycle: daily

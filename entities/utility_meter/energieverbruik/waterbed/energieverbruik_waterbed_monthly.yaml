@@ -1,0 +1,4 @@
+---
+  energieverbruik_waterbed_monthly:
+    source: sensor.energy_powerplug_4_daily
+    cycle: monthly

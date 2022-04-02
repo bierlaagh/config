@@ -1,0 +1,4 @@
+---
+  energieverbruik_waterkoker_monthly:
+    source: sensor.plug_tuya_power_metered_16_waterkoker_energy
+    cycle: monthly

@@ -1,0 +1,4 @@
+---
+  energieverbruik_ioniq_charger_yearly:
+    source: sensor.plug_tuya_power_metered_2_ioniq_energy
+    cycle: yearly
