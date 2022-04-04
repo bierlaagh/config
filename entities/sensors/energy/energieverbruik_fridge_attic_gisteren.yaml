@@ -1,0 +1,8 @@
+---
+platform: template
+sensors:
+  energieverbruik_fridge_attic_gisteren:
+    friendly_name: energie vriezer zolder gisteren
+    unit_of_measurement: kWh
+    icon_template: "mdi:transmission-tower-export"
+    value_template: "{{ state_attr('sensor.energieverbruik_fridge_attic_daily','last_period') }}"

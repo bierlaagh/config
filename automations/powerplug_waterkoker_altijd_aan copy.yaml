@@ -1,0 +1,15 @@
+---
+alias: powerplug_waterkoker_altijd_aan
+description: powermeter_waterkoker_altijd_aan
+trigger:
+  - platform: device
+    type: changed_states
+    device_id: bbd2773b947b0a7fd5405ec3985ba1f9
+    entity_id: switch.plug_tuya_power_metered_16_waterkoker
+    domain: switch
+action:
+  - type: turn_on
+    device_id: bbd2773b947b0a7fd5405ec3985ba1f9
+    entity_id: switch.plug_tuya_power_metered_16_waterkoker
+    domain: switch
+mode: single

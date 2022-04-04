@@ -1,0 +1,8 @@
+---
+platform: template
+sensors:
+  energieverbruik_airfryer_gisteren:
+    friendly_name: energie airfryer gisteren
+    unit_of_measurement: kWh
+    icon_template: "mdi:transmission-tower-export"
+    value_template: "{{ state_attr('sensor.energieverbruik_airfryer_daily','last_period') }}"

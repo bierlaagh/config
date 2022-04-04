@@ -1,0 +1,9 @@
+---
+platform: template
+sensors:
+  energieverbruik_media_woonkamer_gisteren:
+    friendly_name: energie media woonkamer gisteren
+    unit_of_measurement: kWh
+    icon_template: "mdi:transmission-tower-export"
+    value_template: "{{ state_attr('sensor.energieverbruik_media_woonkamer_daily
+    ','last_period') }}"
