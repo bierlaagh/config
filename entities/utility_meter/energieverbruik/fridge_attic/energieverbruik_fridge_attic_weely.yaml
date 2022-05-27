@@ -1,4 +1,4 @@
 ---
   energieverbruik_fridge_attic_weely:
-    source: sensor.plug_tuya_power_metered_15_vriezer_zolder_energy
+    source: sensor.wall_plug_heatpanel_electric_consumption_kwh
     cycle: weekly

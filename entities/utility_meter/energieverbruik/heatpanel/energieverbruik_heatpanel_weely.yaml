@@ -1,4 +1,4 @@
 ---
   energieverbruik_heatpanel_weely:
-    source: sensor.wall_plug_heatpanel_electric_consumption_kwh
+    source: sensor.plug_tuya_power_metered_17_heatpanel_energy
     cycle: weekly
