@@ -1,4 +1,4 @@
 ---
   energieverbruik_waterkoker_yearly:
-    source: sensor.plug_tuya_power_metered_16_waterkoker_energy
+    source: sensor.plug_tuya_power_metered_4_waterkoker_keuken_alway_on_energy
     cycle: yearly

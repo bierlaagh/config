@@ -1,4 +1,4 @@
 ---
     platform: ping
     hosts:
-      iphone_x_lynn: 192.168.178.188
+      iphone_x_lynn: 192.168.178.73

@@ -19,3 +19,24 @@
       message: Jasper Left Home
       title: Jasper weg
   mode: single
+- id: '1653184899270'
+  alias: Waterbed_altijd_aan
+  description: ''
+  trigger:
+  - platform: device
+    type: turned_off
+    device_id: d63b212e73cd90bd00fb5baea1a1d89e
+    entity_id: switch.plug_tuya_power_metered_17_waterbed
+    domain: switch
+  condition: []
+  action:
+  - device_id: d63b212e73cd90bd00fb5baea1a1d89e
+    domain: select
+    entity_id: select.plug_tuya_power_metered_17_waterbed_indicator_mode
+    type: select_option
+    option: 'on'
+  - service: telegram_bot.send_message
+    data:
+      message: Waterbed automatisch aangezet
+      title: 'Waterbed automation triggered '
+  mode: single
