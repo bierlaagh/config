@@ -7,7 +7,7 @@
   description: zet koffie apparaat als deze 30 min niet is gebruikt 
   trigger:
   - platform: numeric_state
-    entity_id: sensor.power_meter_plug_5_energy
+    entity_id: sensor.plug_tuya_power_metered_13_koffieapparaat_power
     below: '50'
     for:
       hours: 0
@@ -16,10 +16,10 @@
     attribute: power
   condition:
   - condition: state
-    entity_id: switch.power_meter_plug_5
+    entity_id: switch.plug_tuya_power_metered_13_koffieapparaat
     state: 'on'
   action:
   - service: switch.turn_off
     target:
-      entity_id: switch.power_meter_plug_5
+      entity_id: switch.plug_tuya_power_metered_13_koffieapparaat
   mode: single

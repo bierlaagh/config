@@ -1,4 +1,4 @@
 ---
-  energieverbruik_fridge_attic_weely:
+  energieverbruik_fridge_attic_weekly:
     source: sensor.wall_plug_heatpanel_electric_consumption_kwh
     cycle: weekly

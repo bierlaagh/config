@@ -40,3 +40,33 @@
       message: Waterbed automatisch aangezet
       title: 'Waterbed automation triggered '
   mode: single
+- id: '1656713056510'
+  alias: zwembadpomp on
+  description: ''
+  trigger:
+  - platform: time
+    at: 03:00:00
+  - platform: time
+    at: '14:00:00'
+  condition: []
+  action:
+  - device_id: 80204471ca7f905c3e0b1d4c3274ff71
+    domain: rfxtrx
+    type: send_command
+    subtype: 'On'
+  mode: single
+- id: '1656713133264'
+  alias: zwembadpomp off
+  description: ''
+  trigger:
+  - platform: time
+    at: 06:00:00
+  - platform: time
+    at: '16:00:00'
+  condition: []
+  action:
+  - device_id: 80204471ca7f905c3e0b1d4c3274ff71
+    domain: rfxtrx
+    type: send_command
+    subtype: 'Off'
+  mode: single

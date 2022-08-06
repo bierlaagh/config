@@ -1,0 +1,15 @@
+---
+# when Sander leaves the house the lights in his room wil automaticly turned off  
+  id: '1638387456737'
+  alias: 'Mark weg koffie apparaat uit'
+  description: Bij verlaten zone Home gaat het koffieapparaat automatisch uit
+  trigger:
+  - platform: zone
+    entity_id: person.mark_bierlaagh
+    zone: zone.home
+    event: leave
+  action:
+  - service: switch.turn_off
+    target:
+      entity_id: switch.plug_tuya_power_metered_13_koffieapparaat
+  mode: single

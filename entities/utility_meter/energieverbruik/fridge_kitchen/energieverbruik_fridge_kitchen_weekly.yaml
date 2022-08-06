@@ -1,0 +1,4 @@
+---
+  energieverbruik_fridge_kitchen__weekly:
+    source: sensor.athom_plug_power_metered_3_koelkast_keuken_energy_total
+    cycle: weekly
