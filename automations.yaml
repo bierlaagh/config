@@ -70,3 +70,25 @@
     type: send_command
     subtype: 'Off'
   mode: single
+- id: '1659816310485'
+  alias: wasdroger_altijd_aan
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 7e2318529a1a26b28d70eb84b6397b14
+    domain: select
+    entity_id: select.plug_tuya_power_metered_14_wasdroger_indicator_mode
+    type: current_option_changed
+    to: 'off'
+  condition: []
+  action:
+  - device_id: 7e2318529a1a26b28d70eb84b6397b14
+    domain: select
+    entity_id: select.plug_tuya_power_metered_14_wasdroger_indicator_mode
+    type: select_option
+    option: 'on'
+  - service: telegram_bot.send_message
+    data:
+      message: wasdroger automatisch aangezet
+      title: 'wasdroger (on) automation triggered '
+  mode: single
