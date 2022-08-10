@@ -1,0 +1,4 @@
+---
+  energieverbruik_fridge_garage_monthly:
+    source: sensor.tasmota_energy_total
+    cycle: monthly
