@@ -1,4 +1,4 @@
 ---
   energieverbruik_american_fridge_weely:
-    source: sensor.powerplug_lg_fridge_daily_energy
+    source: sensor.tasmota_energy_total
     cycle: weekly

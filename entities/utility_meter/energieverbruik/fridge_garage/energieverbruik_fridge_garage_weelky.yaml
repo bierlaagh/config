@@ -1,4 +1,0 @@
----
-  energieverbruik_fridge_garage_weekly:
-    source: sensor.tasmota_energy_total
-    cycle: weekly
