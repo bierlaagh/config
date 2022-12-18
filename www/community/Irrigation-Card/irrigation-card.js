@@ -182,7 +182,10 @@ class IrrigationCard extends HTMLElement {
 							runtimes
 							);
 				// list of other in order
+<<<<<<< HEAD
 				add_attr_value(name + '_enable_zone', zone_attrs);
+=======
+>>>>>>> fc29760c (Initial commit)
 				add_attr_value(name + '_run_freq', zone_attrs);
 				add_attr_value(name + '_water', zone_attrs);
  			  add_attr_value(name + '_water_adjustment', zone_attrs);
@@ -236,6 +239,7 @@ class IrrigationCard extends HTMLElement {
 				zfname += (hass.states[value].attributes['friendly_name'] + ", ");
 			} //getName
 
+<<<<<<< HEAD
 			function filter(onoff) {
 			  // build the filter for the run button
 				const filter = [{entity: config.program, state: 'off'}];
@@ -262,6 +266,9 @@ class IrrigationCard extends HTMLElement {
 				zones.forEach(getName);
 				zfname = zfname.substring(0, zfname.length-2);
 
+=======
+			function ZoneHeader(zones,zname) {
+>>>>>>> fc29760c (Initial commit)
 				// process zone/zonegroup main section
 				if (config.show_program === false && first_zone && !config.title ) {
 					//do nothing
@@ -271,6 +278,13 @@ class IrrigationCard extends HTMLElement {
 							});
 				}
 
+<<<<<<< HEAD
+=======
+				zfname = "";
+				zones.forEach(getName);
+				zfname = zfname.substring(0, zfname.length-2);
+
+>>>>>>> fc29760c (Initial commit)
 				add_button_service(
 					'irrigationprogram.run_zone',
 					zfname,
@@ -279,6 +293,7 @@ class IrrigationCard extends HTMLElement {
 					entity_id: config.program,
 					zone: zones,
 					},
+<<<<<<< HEAD
 					filter('off')
 				);
 				add_button_service(
@@ -290,6 +305,9 @@ class IrrigationCard extends HTMLElement {
 					zone: zones,
 					},
 					filter('on')
+=======
+					[{entity: config.program, state: 'off'}]
+>>>>>>> fc29760c (Initial commit)
 				);
 
 				add_button_off(
@@ -299,6 +317,7 @@ class IrrigationCard extends HTMLElement {
 					[{entity: zones[0], state: 'on'}]
 				);
 			
+<<<<<<< HEAD
 				let show_last_ran = true;
 				if (typeof config.show_last_ran !== 'undefined') {
 					if (config.show_last_ran === false) {
@@ -325,6 +344,12 @@ class IrrigationCard extends HTMLElement {
 					if (show_next_run === true) {
 						add_attribute(zname + '_next_run', ' ', 'mdi:clock-start', [{entity: config.program, state: 'off'}],entities);
 					}
+=======
+				if(showconfig) {
+					add_attribute(zname + '_last_ran', ' ', 'mdi:clock', [{entity: showconfig, state: 'on'},{entity: config.program, state: 'off'}],entities);
+				} else {
+					add_attribute(zname + '_last_ran', ' ', 'mdi:clock', [{entity: config.program, state: 'off'}],entities);
+>>>>>>> fc29760c (Initial commit)
 				}
 			} //ZoneHeader
 
@@ -429,7 +454,10 @@ class IrrigationCard extends HTMLElement {
 }
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> fc29760c (Initial commit)
 customElements.define('irrigation-card', IrrigationCard);
 window.customCards = window.customCards || [];
 window.customCards.push({

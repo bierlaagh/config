@@ -1,4 +1,8 @@
 ---
 # Discovery
 # https://www.home-assistant.io/components/discovery/
+<<<<<<< HEAD
 # discovery:
+=======
+discovery:
+>>>>>>> fc29760c (Initial commit)

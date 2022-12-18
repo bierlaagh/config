@@ -11,7 +11,11 @@
 # thing only! Click through it, you'll get it pretty fast.
 #
 # The configuration.yaml is only used to bootstrap the system.
+<<<<<<< HEAD
 # new input
+=======
+#
+>>>>>>> fc29760c (Initial commit)
 homeassistant:
   # Load packages
   packages: !include_dir_named integrations

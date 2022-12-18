@@ -5,4 +5,8 @@ sensors:
       friendly_name: "waterbed nicolette"
       unit_of_measurement: '°C'
       value_template: >-
+<<<<<<< HEAD
           {{ states.sensor.tasmota_homebrew_waterbed_temperatuur_ds18b20_1_temperature.state | float + 0.6 }}
+=======
+          {{ states.sensor.tasmota_ds18b20_1_temperature.state | float + 0.6 }}
+>>>>>>> fc29760c (Initial commit)

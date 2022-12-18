@@ -14,11 +14,18 @@ __pycache__
 deps
 @eaDir
 custom_components
+<<<<<<< HEAD
 esphome
 node-red
 
 # Specific file ignores
 core
+=======
+
+# Specific file ignores
+core
+.HA_VERSION
+>>>>>>> fc29760c (Initial commit)
 image
 ip_bans.yaml
 secrets.yaml
@@ -27,7 +34,14 @@ secrets.yaml
 blueprints/*/homeassistant
 
 # ESPHome ignores
+<<<<<<< HEAD
 esphome/.*/
+=======
+esphome/*/
+
+# Node red
+node-red/.*/
+>>>>>>> fc29760c (Initial commit)
 
 # Ignore add-on files
 aircast.xml
