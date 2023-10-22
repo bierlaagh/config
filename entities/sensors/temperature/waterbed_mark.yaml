@@ -6,7 +6,11 @@ sensors:
       unit_of_measurement: '°C'
       value_template: >-
 <<<<<<< HEAD
+<<<<<<< HEAD
           {{ states.sensor.tasmota_homebrew_waterbed_temperatuur_ds18b20_2_temperature.state | float + 0.4 }}
 =======
           {{ states.sensor.tasmota_ds18b20_2_temperature.state | float + 0.4 }}
 >>>>>>> fc29760c (Initial commit)
+=======
+          {{ states.sensor.tasmota_homebrew_waterbed_temperatuur_ds18b20_2_temperature.state | float + 0.4 }}
+>>>>>>> e362ca21 (-)
