@@ -430,3 +430,47 @@
       message: Sander arrived Home
       title: Sander thuis
   mode: single
+- id: '1638129488106'
+  alias: heatpanel studeerkamer ofn
+  description: ''
+  trigger:
+  - platform: time
+    at: 07:00:00
+  condition:
+  - condition: time
+    weekday:
+    - mon
+    - wed
+  action:
+  - service: climate.set_hvac_mode
+    target:
+      device_id: f4807beec42e136b359baa70e1e8071c
+    data:
+      hvac_mode: heat
+  - service: climate.set_temperature
+    target:
+      device_id: f4807beec42e136b359baa70e1e8071c
+    data:
+      temperature: 21
+  mode: single
+- id: '1639731038109'
+  alias: heatpanel studeerkamer off
+  description: ''
+  trigger:
+  - platform: time
+    at: '18:05:00'
+  condition:
+  - condition: time
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+  action:
+  - service: climate.set_hvac_mode
+    target:
+      entity_id:
+      - climate.your_eurom_heater
+    data:
+      hvac_mode: 'off'
+  mode: single
