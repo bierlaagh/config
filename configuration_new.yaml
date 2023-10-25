@@ -11,7 +11,7 @@
 # thing only! Click through it, you'll get it pretty fast.
 #
 # The configuration.yaml is only used to bootstrap the system.
-# new input
+#
 homeassistant:
   # Load packages
   packages: !include_dir_named integrations
