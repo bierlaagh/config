@@ -1,0 +1,6 @@
+---
+platform: template
+sensors:
+  watermeter_internal_break:
+        friendly_name: "Watermeter internal break"
+        value_template: '{{states.sensor.watermeter.attributes["breakdetect"]}}'

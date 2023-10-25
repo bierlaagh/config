@@ -1,24 +1,3 @@
-- id: '1648210287941'
-  alias: Jasper weg apparaten uit
-  description: Jasper weg apparaten op zijn kamer uit
-  trigger:
-  - platform: zone
-    entity_id: person.jasper_bierlaagh
-    zone: zone.home
-    event: leave
-  action:
-  - service: light.turn_off
-    target:
-      device_id:
-      - c19a67f8e10d3581c13d4391adc7e833
-      - 23885973c5decd67f87e59d48115246d
-      - 92715a7c2d20dd04cf8871c42865a03e
-    data: {}
-  - service: notify.mark_telegram
-    data:
-      message: Jasper Left Home
-      title: Jasper weg
-  mode: single
 - id: '1653184899270'
   alias: Waterbed_altijd_aan
   description: ''
@@ -45,9 +24,7 @@
   description: ''
   trigger:
   - platform: time
-    at: 03:00:00
-  - platform: time
-    at: '14:00:00'
+    at: 02:30:00
   condition: []
   action:
   - device_id: 80204471ca7f905c3e0b1d4c3274ff71
@@ -60,9 +37,7 @@
   description: ''
   trigger:
   - platform: time
-    at: 06:00:00
-  - platform: time
-    at: '16:00:00'
+    at: 07:00:00
   condition: []
   action:
   - device_id: 80204471ca7f905c3e0b1d4c3274ff71
@@ -91,4 +66,367 @@
     data:
       message: wasdroger automatisch aangezet
       title: 'wasdroger (on) automation triggered '
+  mode: single
+- id: '1662014325173'
+  alias: Koelkast schakelaar altijd aan
+  description: ''
+  trigger:
+  - platform: device
+    type: turned_off
+    device_id: d46309416de0231e9800d6840f10a1b4
+    entity_id: switch.tasmota
+    domain: switch
+  condition: []
+  action:
+  - type: turn_on
+    device_id: d46309416de0231e9800d6840f10a1b4
+    entity_id: switch.tasmota
+    domain: switch
+  mode: single
+- id: '1673644879157'
+  alias: Sander weg lampen uit
+  description: Sander weg lampen op zijn kamer uit
+  trigger:
+  - platform: zone
+    entity_id: person.sander_bierlaagh
+    zone: zone.home
+    event: leave
+  condition: []
+  action:
+  - service: light.turn_off
+    data: {}
+    target:
+      entity_id:
+      - light.light_lidl_g10_1_slaapkamer_sander
+      - light.light_lidl_g10_2_slaapkamer_sander
+      - light.light_lidl_g10_3_slaapkamer_sander
+      - light.light_lidl_g10_4_slaapkamer_sander
+      - light.light_lidl_g10_5_slaapkamer_sander
+      - light.led_strip_sander
+  - service: switch.turn_off
+    target:
+      entity_id: switch.tasmota_athom_plug_power_metered_7_media_sander_4
+    data: {}
+  - service: notify.mark_telegram
+    data:
+      message: Sander Left Home
+      title: Sander weg
+  mode: single
+- id: '1673646033460'
+  alias: aquarium verlichting uit
+  description: verlichting van aquarium uit (behalve rood)
+  trigger:
+  - platform: time
+    at: '20:45:00'
+  condition: []
+  action:
+  - service: switch.turn_off
+    data: {}
+    target:
+      entity_id: switch.plug_ikea_power_nometer_11_aquarium
+  mode: single
+- id: '1673646176447'
+  alias: aquarium verlichting aan
+  description: aquarium verlichting aan
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: -09:30:00
+  condition: []
+  action:
+  - service: switch.turn_on
+    data: {}
+    target:
+      entity_id: switch.plug_ikea_power_nometer_11_aquarium
+  mode: single
+- id: '1673646348303'
+  alias: Aquarium verlichting (rood) uit
+  description: verlichting (rood)van aquarium uit half uur nadat de andere verlichting
+    is uitgegaan
+  trigger:
+  - platform: time
+    at: '21:30:00'
+  condition: []
+  action:
+  - service: switch.turn_off
+    data: {}
+    target:
+      device_id: b231fef629469f5bad7106f488e5e4b4
+  mode: single
+- id: '1673646779266'
+  alias: aquarium verlichting (rood) aan
+  description: aquarium verlichting rood aan ruim een uur voor de andere lichten in
+    het aquarium aan gaan.
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: '-10:15:00'
+  condition: []
+  action:
+  - service: switch.turn_on
+    data: {}
+    target:
+      device_id: b231fef629469f5bad7106f488e5e4b4
+  mode: single
+- id: '1673989441815'
+  alias: waterkoker_altijd_aan
+  description: waterkoker_altijd_aan
+  trigger:
+  - platform: device
+    type: changed_states
+    device_id: bbd2773b947b0a7fd5405ec3985ba1f9
+    entity_id: switch.plug_tuya_power_metered_4
+    domain: switch
+  condition: []
+  action:
+  - type: turn_on
+    device_id: bbd2773b947b0a7fd5405ec3985ba1f9
+    entity_id: switch.plug_tuya_power_metered_4
+    domain: switch
+  mode: single
+- id: '1685404950577'
+  alias: 'ledstrip buitenkeuken aan sunsets '
+  description: 'ledstrip buitenkeuken aan sunsets '
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: -00:45:00
+  condition: []
+  action:
+  - type: turn_on
+    device_id: f5a4d73e154d62ca89aa360dc1255c03
+    entity_id: light.lsc_light_strip_rgbcct
+    domain: light
+  - service: light.turn_on
+    data: {}
+    target:
+      device_id: 280f9ec4c90220ff8e4a5ee440cdd93a
+  mode: single
+- id: '1685405059075'
+  alias: ledstrip buitenkeuken uit
+  description: ledstrip buitenkeuken uit
+  trigger:
+  - platform: time
+    at: '23:59:00'
+  condition: []
+  action:
+  - type: turn_off
+    device_id: f5a4d73e154d62ca89aa360dc1255c03
+    entity_id: light.lsc_light_strip_rgbcct
+    domain: light
+  mode: single
+- id: '1689104270636'
+  alias: douchen actief ventilator aan
+  description: ''
+  trigger:
+  - type: moist
+    platform: device
+    device_id: a26575e155a25af7d316e306ede1a14e
+    entity_id: binary_sensor.sensor_water_leak_badkamer_water_leak
+    domain: binary_sensor
+  condition: []
+  action:
+  - type: turn_on
+    device_id: 877b325b4ffaf5ea3447a5a518b55503
+    entity_id: switch.ac_06ead9a_2
+    domain: switch
+  mode: single
+- id: '1690489016248'
+  alias: Jasper weg apparaten uit nieuw
+  description: 'Jasper weg apparaten op zijn kamer uit en woonkamer '
+  trigger:
+  - platform: zone
+    entity_id: person.jasper_bierlaagh
+    zone: zone.home
+    event: leave
+  condition: []
+  action:
+  - service: light.turn_off
+    target:
+      device_id:
+      - c19a67f8e10d3581c13d4391adc7e833
+      - 23885973c5decd67f87e59d48115246d
+      - 92715a7c2d20dd04cf8871c42865a03e
+    data: {}
+  - service: notify.mark_telegram
+    data:
+      message: Jasper Left Home
+      title: Jasper weg
+  mode: single
+- id: '1692994951128'
+  alias: ventilator uit na 20 minuten
+  description: ''
+  trigger:
+  - type: not_moist
+    platform: device
+    device_id: a26575e155a25af7d316e306ede1a14e
+    entity_id: 9fe0f80043353cf2bb4a7eceee93146a
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 20
+      seconds: 0
+  condition: []
+  action:
+  - service: fan.turn_off
+    data: {}
+    target:
+      entity_id: fan.centrale_ventilator
+  mode: single
+- id: '1693942934647'
+  alias: Thuiswerken  apparaten aan
+  description: HNW apparaten aan
+  trigger:
+  - platform: time
+    at: 07:00:00
+  condition:
+  - condition: time
+    weekday:
+    - wed
+    - mon
+  action:
+  - service: switch.turn_on
+    data: {}
+    target:
+      device_id: 6836d6ce7db077bbf0c1d81b75e411a6
+  mode: single
+- id: '1693943174077'
+  alias: Thuiswerken apparaten uit
+  description: HNW apparaten uit
+  trigger:
+  - platform: time
+    at: '23:00:00'
+  condition: []
+  action:
+  - service: switch.turn_off
+    data: {}
+    target:
+      device_id: 6836d6ce7db077bbf0c1d81b75e411a6
+  mode: single
+- id: '1693944672664'
+  alias: verlichting buitenkeuken uit
+  description: led buitenkeuken uit
+  trigger:
+  - platform: time
+    at: '23:59:00'
+  condition: []
+  action:
+  - service: light.turn_off
+    data: {}
+    target:
+      device_id:
+      - 280f9ec4c90220ff8e4a5ee440cdd93a
+      - f5a4d73e154d62ca89aa360dc1255c03
+  mode: single
+- id: '1696960093888'
+  alias: koffie apparaat uit bij 30 min geen gebruik
+  description: zet koffie apparaat als deze 30 min niet is gebruikt
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.plug_tuya_power_metered_13_koffieapparaat_power
+    below: '50'
+    for:
+      hours: 0
+      minutes: 30
+      seconds: 0
+    attribute: power
+  condition:
+  - condition: state
+    entity_id: switch.plug_tuya_power_metered_13_koffieapparaat
+    state: 'on'
+  action:
+  - service: switch.turn_off
+    target:
+      entity_id: switch.plug_tuya_power_metered_13_koffieapparaat
+    data: {}
+  mode: single
+- id: '1696969115321'
+  alias: Siemens koffie automaat aanzetten om 7:00
+  description: ''
+  trigger:
+  - platform: time
+    at: 07:00:00
+  condition: []
+  action:
+  - type: turn_on
+    device_id: 341ba4c78a978f938f3feb31be8e341a
+    entity_id: ee6489c13faa59ce98fed2972f24b919
+    domain: switch
+  mode: single
+- id: '1696969733400'
+  alias: siemens koffieapparaat uit bij bedtijd
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.bedtijd
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - type: turn_off
+    device_id: 341ba4c78a978f938f3feb31be8e341a
+    entity_id: ee6489c13faa59ce98fed2972f24b919
+    domain: switch
+  mode: single
+- id: '1696970000415'
+  alias: Nicolette weg notificatie
+  description: ''
+  trigger:
+  - platform: zone
+    entity_id: person.nicolette_bierlaagh
+    zone: zone.home
+    event: leave
+  condition: []
+  action:
+  - service: notify.mark_telegram
+    data:
+      message: Nicolette Left Home
+      title: Nicolette weg
+  mode: single
+- id: '1696970121264'
+  alias: Nicolette Bierlaagh arrives at Huis zone
+  description: ''
+  trigger:
+  - platform: zone
+    entity_id: person.nicolette_bierlaagh
+    zone: zone.home
+    event: enter
+    alias: When Nicolette Bierlaagh arrives at Huis zone
+  condition: []
+  action:
+  - service: notify.mark_telegram
+    data:
+      message: Nicolette arrived at  Home
+      title: nicolette thuis
+  mode: single
+- id: '1696970229132'
+  alias: Jasper arrived Home
+  description: ''
+  trigger:
+  - platform: zone
+    entity_id: person.jasper_bierlaagh
+    zone: zone.home
+    event: enter
+  condition: []
+  action:
+  - service: notify.mark_telegram
+    data:
+      message: Jasper arrived Home
+      title: Jasper Thuis
+  mode: single
+- id: '1696970293831'
+  alias: Sander arrived home
+  description: ''
+  trigger:
+  - platform: zone
+    entity_id: person.sander_bierlaagh
+    zone: zone.home
+    event: enter
+  condition: []
+  action:
+  - service: notify.mark_telegram
+    data:
+      message: Sander arrived Home
+      title: Sander thuis
   mode: single

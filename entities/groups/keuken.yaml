@@ -3,5 +3,5 @@
   keuken: 
       name: keuken lampen
       entities:
-      - light.plafondlamp_keuken
-      - light.led_keuken
+      - light.light_ikea_led_bulb_keuken
+      - light.light_ikea_led_driver_keuken

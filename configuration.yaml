@@ -56,3 +56,12 @@ sensor:
         value_template: '{{ states.sensor.inverter_None.attributes.soc }}'
         unit_of_measurement: '%'
         friendly_name: "Battery power"
+#template:
+#  - sensor:
+#      - name: watermeter_toonwater
+#        unique_id: watermeter_toonwater
+#        device_class: water
+#        unit_of_measurement: "m³"
+#        state: >- 
+#           {{states.sensor.watermeter.attributes["waterquantity"] |float /1000}}
+#        state_class: total_increasing

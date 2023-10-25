@@ -1,0 +1,9 @@
+---
+platform: template
+sensors:
+  watermeter_wifi:
+        friendly_name: "Watermeter Wifi"
+        unique_id: "Watermeter_Wifi"
+        unit_of_measurement: "dB"
+        value_template: '{{states.sensor.watermeter.attributes["RSSI"] }}'
+        icon_template: "mdi:wifi-arrow-up-down"

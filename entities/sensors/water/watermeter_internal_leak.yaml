@@ -1,0 +1,6 @@
+---
+platform: template
+sensors:
+  watermeter_internal_leak:
+        friendly_name: "Watermeter internal leak"
+        value_template: '{{states.sensor.watermeter.attributes["leakdetect"]}}'

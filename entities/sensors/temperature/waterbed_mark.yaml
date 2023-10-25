@@ -5,4 +5,4 @@ sensors:
       friendly_name: "waterbed mark"
       unit_of_measurement: '°C'
       value_template: >-
-          {{ states.sensor.tasmota_ds18b20_2_temperature.state | float + 0.4 }}
+          {{ states.sensor.tasmota_homebrew_waterbed_temperatuur_ds18b20_2_temperature.state | float + 0.4 }}

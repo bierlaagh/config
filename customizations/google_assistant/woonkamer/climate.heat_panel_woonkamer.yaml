@@ -1,0 +1,15 @@
+---
+# Entity configuration for Google Assistant.
+#
+# I use this to customize how the device shows up in Google Assistant.
+#
+# https://www.home-assistant.io/integrations/google_assistant/#entity_config
+#
+climate.heat_panel_woonkamer:
+  name: heatpanel woonkamer
+  aliases:
+    - woonkamer heatpanel
+    - livingroom heatpanel
+    - heatpanel livingroom
+
+  room: Woonkamer

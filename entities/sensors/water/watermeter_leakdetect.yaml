@@ -1,0 +1,13 @@
+---
+platform: template
+sensors:
+  watermeter_leakdetect:
+        friendly_name: "Watermeter Lekdetectie"
+        unique_id: "Watermeter_Lekdetectie2"
+        icon_template: "mdi:water-alert"
+        value_template: >-
+            {% if is_state('sensor.watermeter_internal_leak', '0') %}
+                Veilig
+            {% else %}
+                Lek gedetecteerd!
+            {% endif %}

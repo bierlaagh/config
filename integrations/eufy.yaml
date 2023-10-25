@@ -1,0 +1,3 @@
+eufy:
+  username: !secret eufy_client_id
+  password: !secret eufy_client_password

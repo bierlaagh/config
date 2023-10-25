@@ -4,4 +4,9 @@ name: watermeter
 json_attributes:
   - waterflow
   - waterquantity
+  - breakdetect
+  - leakdetect
+  - RSSI
+  - version
+  - currentBatch
 resource: !secret watermeter_ip

@@ -1,0 +1,7 @@
+---
+  group:
+  wandlampen_kleedkamer: 
+      name: wandlampen kleedkamer
+      entities:
+      - light.wiz_dimmable_white_d91c3a
+      - light.wiz_dimmable_white_d7b79e

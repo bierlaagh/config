@@ -1,5 +1,5 @@
 ---
-incomfort:
-  host: !secret incomfort_host
-  username: !secret incomfort_user
-  password: !secret incomfort_pass
+#incomfort:
+#  host: !secret incomfort_host
+#  username: !secret incomfort_user
+#  password: !secret incomfort_pass

@@ -1,0 +1,7 @@
+---
+platform: template
+sensors:
+  watermeter_versie:
+        friendly_name: "Watermeter Versie"
+        unique_id: "Watermeter_Versie"
+        value_template: '{{states.sensor.watermeter.attributes["version"] }}'

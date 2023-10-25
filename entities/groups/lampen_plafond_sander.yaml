@@ -1,0 +1,10 @@
+---
+  group:
+  lampen_plafond_sander: 
+      name: lampen plafond sander
+      entities:
+      - light.light_lidl_g10_1_slaapkamer_sander
+      - light.light_lidl_g10_2_slaapkamer_sander
+      - light.light_lidl_g10_3_slaapkamer_sander
+      - light.light_lidl_g10_4_slaapkamer_sander
+      - light.light_lidl_g10_5_slaapkamer_sander

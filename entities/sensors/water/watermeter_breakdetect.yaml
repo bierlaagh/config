@@ -1,0 +1,13 @@
+---
+platform: template
+sensors:
+  watermeter_breakdetect:
+        friendly_name: "Watermeter Breukdetectie"
+        unique_id: "Watermeter_Breukdetectie2"
+        icon_template: "mdi:pipe-leak"
+        value_template: >-
+            {% if is_state('sensor.watermeter_internal_break', '0') %}
+                Veilig
+            {% else %}
+                Breuk gedetecteerd!
+            {% endif %}

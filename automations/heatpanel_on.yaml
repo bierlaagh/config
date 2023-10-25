@@ -13,8 +13,6 @@
   condition:
   - condition: time
     weekday:
-    - mon
-    - tue
     - wed
     - thu
   action:

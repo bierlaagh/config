@@ -1,0 +1,12 @@
+---
+#
+# 
+#
+sensor:
+  - name: watermeter_toonwater
+    unique_id: watermeter_toonwater
+    unit_of_measurement: m³
+    device_class: water
+    state: >- 
+        {{states.sensor.watermeter.attributes["waterquantity"] |float /1000}}
+    state_class: total_increasing

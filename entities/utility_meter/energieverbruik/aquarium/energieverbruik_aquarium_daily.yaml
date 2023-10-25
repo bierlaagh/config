@@ -1,4 +1,4 @@
 ---
   energieverbruik_aquarium_daily:
-    source: sensor.powerplug_1_daily_energy
+    source: sensor.tasmota_energy_today_2
     cycle: daily
