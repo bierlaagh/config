@@ -14,13 +14,6 @@ __pycache__
 deps
 @eaDir
 custom_components
-<<<<<<< HEAD
-esphome
-node-red
-
-# Specific file ignores
-core
-=======
 
 # Specific file ignores
 core

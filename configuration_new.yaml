@@ -15,7 +15,14 @@
 # new input
 =======
 #
+<<<<<<< HEAD
 >>>>>>> fc29760c (Initial commit)
+=======
+# added this line to test new git status
+# new test to see if changes work
+# woukd this also work
+#last test 16:03 25 okt
+>>>>>>> a4097034 (another sync 1618)
 homeassistant:
   # Load packages
   packages: !include_dir_named integrations
