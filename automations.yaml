@@ -282,13 +282,8 @@
   condition:
   - condition: time
     weekday:
-<<<<<<< HEAD
-    - wed
-    - mon
-=======
     - tue
     - wed
->>>>>>> fc29760c (Initial commit)
   action:
   - service: switch.turn_on
     data: {}

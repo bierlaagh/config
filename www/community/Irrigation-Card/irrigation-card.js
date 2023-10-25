@@ -183,9 +183,13 @@ class IrrigationCard extends HTMLElement {
 							);
 				// list of other in order
 <<<<<<< HEAD
+<<<<<<< HEAD
 				add_attr_value(name + '_enable_zone', zone_attrs);
 =======
 >>>>>>> fc29760c (Initial commit)
+=======
+				add_attr_value(name + '_enable_zone', zone_attrs);
+>>>>>>> d78bbc62 (new try)
 				add_attr_value(name + '_run_freq', zone_attrs);
 				add_attr_value(name + '_water', zone_attrs);
  			  add_attr_value(name + '_water_adjustment', zone_attrs);
@@ -240,6 +244,9 @@ class IrrigationCard extends HTMLElement {
 			} //getName
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> d78bbc62 (new try)
 			function filter(onoff) {
 			  // build the filter for the run button
 				const filter = [{entity: config.program, state: 'off'}];
@@ -266,9 +273,12 @@ class IrrigationCard extends HTMLElement {
 				zones.forEach(getName);
 				zfname = zfname.substring(0, zfname.length-2);
 
+<<<<<<< HEAD
 =======
 			function ZoneHeader(zones,zname) {
 >>>>>>> fc29760c (Initial commit)
+=======
+>>>>>>> d78bbc62 (new try)
 				// process zone/zonegroup main section
 				if (config.show_program === false && first_zone && !config.title ) {
 					//do nothing
@@ -279,12 +289,15 @@ class IrrigationCard extends HTMLElement {
 				}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 				zfname = "";
 				zones.forEach(getName);
 				zfname = zfname.substring(0, zfname.length-2);
 
 >>>>>>> fc29760c (Initial commit)
+=======
+>>>>>>> d78bbc62 (new try)
 				add_button_service(
 					'irrigationprogram.run_zone',
 					zfname,
@@ -294,6 +307,9 @@ class IrrigationCard extends HTMLElement {
 					zone: zones,
 					},
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> d78bbc62 (new try)
 					filter('off')
 				);
 				add_button_service(
@@ -305,9 +321,12 @@ class IrrigationCard extends HTMLElement {
 					zone: zones,
 					},
 					filter('on')
+<<<<<<< HEAD
 =======
 					[{entity: config.program, state: 'off'}]
 >>>>>>> fc29760c (Initial commit)
+=======
+>>>>>>> d78bbc62 (new try)
 				);
 
 				add_button_off(
@@ -318,6 +337,9 @@ class IrrigationCard extends HTMLElement {
 				);
 			
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> d78bbc62 (new try)
 				let show_last_ran = true;
 				if (typeof config.show_last_ran !== 'undefined') {
 					if (config.show_last_ran === false) {
@@ -330,6 +352,7 @@ class IrrigationCard extends HTMLElement {
 						show_next_run = false;
 					}
 				}
+<<<<<<< HEAD
 				if(showconfig) {
 					if (show_last_ran === true) {
 						add_attribute(zname + '_last_ran', ' ', 'mdi:clock-end', [{entity: showconfig, state: 'on'},{entity: config.program, state: 'off'}],entities);
@@ -345,11 +368,27 @@ class IrrigationCard extends HTMLElement {
 						add_attribute(zname + '_next_run', ' ', 'mdi:clock-start', [{entity: config.program, state: 'off'}],entities);
 					}
 =======
+=======
+>>>>>>> d78bbc62 (new try)
 				if(showconfig) {
-					add_attribute(zname + '_last_ran', ' ', 'mdi:clock', [{entity: showconfig, state: 'on'},{entity: config.program, state: 'off'}],entities);
+					if (show_last_ran === true) {
+						add_attribute(zname + '_last_ran', ' ', 'mdi:clock-end', [{entity: showconfig, state: 'on'},{entity: config.program, state: 'off'}],entities);
+					}
+					if (show_next_run === true) {
+						add_attribute(zname + '_next_run', ' ', 'mdi:clock-start', [{entity: showconfig, state: 'on'},{entity: config.program, state: 'off'}],entities);
+					}
 				} else {
+<<<<<<< HEAD
 					add_attribute(zname + '_last_ran', ' ', 'mdi:clock', [{entity: config.program, state: 'off'}],entities);
 >>>>>>> fc29760c (Initial commit)
+=======
+					if (show_last_ran === true) {
+						add_attribute(zname + '_last_ran', ' ', 'mdi:clock-end', [{entity: config.program, state: 'off'}],entities);
+					}
+					if (show_next_run === true) {
+						add_attribute(zname + '_next_run', ' ', 'mdi:clock-start', [{entity: config.program, state: 'off'}],entities);
+					}
+>>>>>>> d78bbc62 (new try)
 				}
 			} //ZoneHeader
 
@@ -455,9 +494,13 @@ class IrrigationCard extends HTMLElement {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> fc29760c (Initial commit)
+=======
+
+>>>>>>> d78bbc62 (new try)
 customElements.define('irrigation-card', IrrigationCard);
 window.customCards = window.customCards || [];
 window.customCards.push({
