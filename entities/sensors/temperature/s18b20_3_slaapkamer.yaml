@@ -5,16 +5,4 @@ sensors:
       friendly_name: "temperatuur slaapkamer"
       unit_of_measurement: '°C'
       value_template: >-
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
           {{ states.sensor.tasmota_homebrew_waterbed_temperatuur_ds18b20_3_temperature.state | float + 0.6 }}
-=======
-          {{ states.sensor.tasmota_ds18b20_3_temperature.state | float + 0.6 }}
->>>>>>> fc29760c (Initial commit)
-=======
-          {{ states.tasmota_homebrew_waterbed_temperatuur DS18B20-3 Temperature.state | float + 0.6 }}
->>>>>>> e362ca21 (-)
-=======
-          {{ states.sensor.tasmota_homebrew_waterbed_temperatuur_ds18b20_3_temperature.state | float + 0.6 }}
->>>>>>> d78bbc62 (new try)
