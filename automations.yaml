@@ -474,3 +474,94 @@
     data:
       hvac_mode: 'off'
   mode: single
+- id: '1698421612994'
+  alias: voordeur open google helper
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.front_door
+    from: 'on'
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: lock.key_master_mark
+    state: locked
+  action:
+  - service: lock.open
+    data: {}
+    target:
+      entity_id:
+      - lock.key_master_mark
+  mode: single
+- id: '1698422581976'
+  alias: front door switch machine status
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - lock.key_master_mark
+    to: locked
+  condition:
+  - condition: state
+    entity_id: input_boolean.front_door
+    state: 'off'
+  action:
+  - service: input_boolean.turn_on
+    data: {}
+    target:
+      entity_id: input_boolean.front_door
+  mode: single
+- id: '1698423053289'
+  alias: voordeur dicht google helper
+  description: ''
+  trigger:
+  - alias: When front door changes from Off to On
+    platform: state
+    entity_id:
+    - input_boolean.front_door
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: lock.key_master_mark
+    state: unlocked
+  action:
+  - service: lock.lock
+    data: {}
+    target:
+      entity_id: lock.key_master_mark
+  mode: single
+- id: '1698423388788'
+  alias: voordeur change input binary if needed
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - lock.key_master_mark
+    to: locked
+  condition:
+  - condition: state
+    entity_id: input_boolean.front_door
+    state: 'off'
+  action:
+  - service: input_boolean.turn_on
+    data: {}
+    target:
+      entity_id: input_boolean.front_door
+  mode: single
+- id: '1698423452889'
+  alias: When front door changes from On to Off
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - lock.key_master_mark
+    to: unlocked
+  condition:
+  - condition: state
+    entity_id: input_boolean.front_door
+    state: 'on'
+  action:
+  - service: input_boolean.turn_off
+    data: {}
+  mode: single
