@@ -282,8 +282,8 @@
   condition:
   - condition: time
     weekday:
-    - tue
     - wed
+    - mon
   action:
   - service: switch.turn_on
     data: {}
@@ -431,7 +431,7 @@
       title: Sander thuis
   mode: single
 - id: '1638129488106'
-  alias: heatpanel studeerkamer ofn
+  alias: heatpanel studeerkamer on
   description: ''
   trigger:
   - platform: time
@@ -565,3 +565,12 @@
   - service: input_boolean.turn_off
     data: {}
   mode: single
+- id: '1699372371138'
+  alias: Wake-up light alarm with sunrise effect aquarium
+  description: ''
+  use_blueprint:
+    path: sbyx/wake-up-light-alarm-with-sunrise-effect.yaml
+    input:
+      light_entity: light.light_strip_a780cc
+      sunrise_duration: 10
+      manual_time: '17:43:00'

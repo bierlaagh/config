@@ -63,3 +63,8 @@ sensor:
 #        state: >- 
 #           {{states.sensor.watermeter.attributes["waterquantity"] |float /1000}}
 #        state_class: total_increasing
+switch:
+  - platform: circadian_lighting
+    name: "natuurlijk licht"
+    lights_rgb:
+      - light.light_strip_a780cc
