@@ -10,8 +10,7 @@ blueprint:
         it off. Color temperature range is auto-detected.
       selector:
         entity:
-          domain:
-          - light
+          domain: light
           multiple: false
     timestamp_sensor:
       name: Alarm timestamp sensor
@@ -20,8 +19,7 @@ blueprint:
       default: none
       selector:
         entity:
-          device_class:
-          - timestamp
+          device_class: timestamp
           multiple: false
     manual_time:
       name: Manual alarm time
@@ -125,7 +123,7 @@ action:
   value_template: '{{sensor == ''none'' or as_timestamp(states(sensor), None) != None}}'
 - condition: template
   value_template: '{{0 < as_timestamp(states(sensor) if sensor != ''none'' else states(''sensor.date'')
-    ~ '' '' ~ manual_time) - as_timestamp(now()) <= float(seconds) and states(check_entity)
+    ~ '' '' ~ manual_time) - as_timestamp(states(''sensor.date_time_iso'')) <= float(seconds) and states(check_entity)
     in [''unknown'', ''on'', ''home'']}}'
 - choose:
   - conditions:
@@ -145,7 +143,7 @@ action:
     while:
     - '{{sensor == ''none'' or as_timestamp(states(sensor), None) != None}}'
     - '{{0 < as_timestamp(states(sensor) if sensor != ''none'' else states(''sensor.date'')
-      ~ '' '' ~ manual_time) - as_timestamp(now()) <= float(seconds)}}'
+      ~ '' '' ~ manual_time) - as_timestamp(states(''sensor.date_time_iso'')) <= float(seconds)}}'
     sequence:
     - delay: '{{tick_time}}'
     - choose:
@@ -154,7 +152,7 @@ action:
           | int}}'
         - '{{sensor == ''none'' or as_timestamp(states(sensor), None) != None}}'
         - '{{0 < as_timestamp(states(sensor) if sensor != ''none'' else states(''sensor.date'')
-          ~ '' '' ~ manual_time) - as_timestamp(now()) <= float(seconds)}}'
+          ~ '' '' ~ manual_time) - as_timestamp(states(''sensor.date_time_iso'')) <= float(seconds)}}'
         sequence:
         - choose:
           - conditions:
@@ -164,11 +162,11 @@ action:
               data:
                 brightness: '{{(float(end_brightness) - (float(range_brightness) *
                   (as_timestamp(states(sensor) if sensor != ''none'' else states(''sensor.date'')
-                  ~ '' '' ~ manual_time) - as_timestamp(now())) / float(seconds)))
+                  ~ '' '' ~ manual_time) - as_timestamp(states(''sensor.date_time_iso''))) / float(seconds)))
                   | int(0)}}'
                 color_temp: '{{(float(end_mired) + (float(start_mired) - float(end_mired))
                   * ((as_timestamp(states(sensor) if sensor != ''none'' else states(''sensor.date'')
-                  ~ '' '' ~ manual_time) - as_timestamp(now())) / float(seconds)))
+                  ~ '' '' ~ manual_time) - as_timestamp(states(''sensor.date_time_iso''))) / float(seconds)))
                   | int(0)}}'
               entity_id: !input light_entity
           default:
@@ -176,7 +174,7 @@ action:
             data:
               brightness: '{{(float(end_brightness) - (float(range_brightness) * (as_timestamp(states(sensor)
                 if sensor != ''none'' else states(''sensor.date'') ~ '' '' ~ manual_time)
-                - as_timestamp(now())) / float(seconds))) | int(0)}}'
+                - as_timestamp(states(''sensor.date_time_iso''))) / float(seconds))) | int(0)}}'
             entity_id: !input light_entity
 - choose: []
   default: !input post_sunrise_actions

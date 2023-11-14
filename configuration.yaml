@@ -54,7 +54,18 @@ sensor:
         value_template: '{{ states.sensor.inverter_None.attributes.soc }}'
         unit_of_measurement: '%'
         friendly_name: "Battery power"
-#template:
+# Example configuration.yaml entry
+  - platform: time_date
+    display_options:
+      - 'time'
+      - 'date'
+      - 'date_time'
+      - 'date_time_utc'
+      - 'date_time_iso'
+      - 'time_date'
+      - 'time_utc'
+      - 'beat'
+        #template:
 #  - sensor:
 #      - name: watermeter_toonwater
 #        unique_id: watermeter_toonwater
@@ -63,8 +74,3 @@ sensor:
 #        state: >- 
 #           {{states.sensor.watermeter.attributes["waterquantity"] |float /1000}}
 #        state_class: total_increasing
-switch:
-  - platform: circadian_lighting
-    name: "natuurlijk licht"
-    lights_rgb:
-      - light.light_strip_a780cc

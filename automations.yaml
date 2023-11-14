@@ -341,20 +341,20 @@
     data: {}
   mode: single
 - id: '1696969115321'
-  alias: Siemens koffie automaat aanzetten om 7:00
+  alias: ' koffie automaat aanzetten om 7:00'
   description: ''
   trigger:
   - platform: time
     at: 07:00:00
   condition: []
   action:
-  - type: turn_on
-    device_id: 341ba4c78a978f938f3feb31be8e341a
-    entity_id: ee6489c13faa59ce98fed2972f24b919
-    domain: switch
+  - service: switch.turn_on
+    target:
+      entity_id: switch.plug_tuya_power_metered_13_koffieapparaat
+    data: {}
   mode: single
 - id: '1696969733400'
-  alias: siemens koffieapparaat uit bij bedtijd
+  alias: koffieapparaat uit bij bedtijd
   description: ''
   trigger:
   - platform: state
@@ -364,10 +364,10 @@
     to: 'on'
   condition: []
   action:
-  - type: turn_off
-    device_id: 341ba4c78a978f938f3feb31be8e341a
-    entity_id: ee6489c13faa59ce98fed2972f24b919
-    domain: switch
+  - service: switch.turn_off
+    target:
+      entity_id: switch.plug_tuya_power_metered_13_koffieapparaat
+    data: {}
   mode: single
 - id: '1696970000415'
   alias: Nicolette weg notificatie
@@ -571,6 +571,130 @@
   use_blueprint:
     path: sbyx/wake-up-light-alarm-with-sunrise-effect.yaml
     input:
-      light_entity: light.light_strip_a780cc
+      light_entity: light.light_tuya_ledstrip_masterbedroom
       sunrise_duration: 10
-      manual_time: '17:43:00'
+      manual_time: 00:35:00
+- id: '1699557119276'
+  alias: Nicolette weg van werk
+  description: ''
+  trigger:
+  - platform: zone
+    entity_id: person.nicolette_bierlaagh
+    zone: zone.kruidvat_orden
+    event: leave
+  condition: []
+  action:
+  - service: notify.mark_telegram
+    data:
+      message: Nicolette Left work
+      title: Nicolette onderweg naar huis
+  mode: single
+- id: '1699562089539'
+  alias: aquarium sunrise simulation
+  description: ''
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: '-10:55'
+  action:
+  - service: light.turn_on
+    target:
+      entity_id:
+      - light.tasmota
+    data:
+      brightness: 1
+      rgb_color:
+      - 229
+      - 106
+      - 69
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 2
+  - choose:
+    - conditions: []
+      sequence:
+      - repeat:
+          until:
+          - condition: numeric_state
+            entity_id: light.tasmota
+            attribute: brightness
+            above: 50
+          sequence:
+          - service: light.turn_on
+            data:
+              brightness_step: 1
+            target:
+              entity_id: light.tasmota
+          - delay:
+              hours: 0
+              minutes: 0
+              seconds: 9
+              milliseconds: 0
+  - service: light.turn_on
+    target:
+      entity_id: light.tasmota
+    data:
+      brightness: 50
+      rgb_color:
+      - 224
+      - 153
+      - 113
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 2
+  - choose:
+    - conditions: []
+      sequence:
+      - repeat:
+          until:
+          - condition: numeric_state
+            entity_id: light.tasmota
+            attribute: brightness
+            above: 150
+          sequence:
+          - service: light.turn_on
+            data:
+              brightness_step: 1
+            target:
+              entity_id: light.tasmota
+          - delay:
+              hours: 0
+              minutes: 0
+              seconds: 10
+              milliseconds: 0
+  - service: light.turn_on
+    target:
+      entity_id: light.tasmota
+    data:
+      brightness: 150
+      rgb_color:
+      - 250
+      - 167
+      - 117
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 2
+  - choose:
+    - conditions: []
+      sequence:
+      - repeat:
+          until:
+          - condition: numeric_state
+            entity_id: light.tasmota
+            attribute: brightness
+            above: 250
+          sequence:
+          - service: light.turn_on
+            data:
+              brightness_step: 1
+            target:
+              entity_id: light.tasmota
+          - delay:
+              hours: 0
+              minutes: 0
+              seconds: 10
+              milliseconds: 0
+  mode: single

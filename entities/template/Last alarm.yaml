@@ -1,0 +1,3 @@
+sensor:
+      - name: "Last alarm"
+        state: "{{ state_attr('input_datetime.last_alarm', 'timestamp') | timestamp_custom('%H:%M',local=True, None) }}"
