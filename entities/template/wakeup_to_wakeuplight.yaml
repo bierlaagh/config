@@ -1,0 +1,3 @@
+sensor:
+      - name: "wakeup_to_wakeuplight"
+        state: "{{ state_attr('input_datetime.wakeup', 'timestamp') | timestamp_custom('%H:%M',local=True, None)- timedelta(minutes=20) }}"  

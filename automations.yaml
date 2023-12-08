@@ -828,3 +828,41 @@
     target:
       entity_id: light.light_ikea_g10_hoek_bank
   mode: single
+- id: '1702069838844'
+  alias: wake-up light Mark
+  description: ''
+  trigger:
+  - platform: template
+    value_template: '{{ ((now().strftime("%s") | int + 1200) | timestamp_custom("%H:%M")) == states.input_datetime.wakeup.state  }}'
+    action:
+  - service: light.turn_on
+    target:
+      entity_id:
+      - light.light_tuya_ledstrip_masterbedroom
+    data:
+      brightness: 1
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 2
+  - choose:
+    - conditions: []
+      sequence:
+      - repeat:
+          until:
+          - condition: numeric_state
+            entity_id: light.light_tuya_ledstrip_masterbedroom
+            attribute: brightness
+            above: 250
+          sequence:
+          - service: light.turn_on
+            data:
+              brightness_step: 2
+            target:
+              entity_id: light.light_tuya_ledstrip_masterbedroom
+          - delay:
+              hours: 0
+              minutes: 0
+              seconds: 4
+              milliseconds: 500
+  mode: single
