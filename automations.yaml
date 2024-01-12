@@ -204,7 +204,9 @@
   - service: light.turn_on
     data: {}
     target:
-      device_id: 280f9ec4c90220ff8e4a5ee440cdd93a
+      device_id:
+      - 280f9ec4c90220ff8e4a5ee440cdd93a
+      - db6dbb8c0e5811360b21387070fd4e68
   mode: single
 - id: '1685405059075'
   alias: ledstrip buitenkeuken uit
@@ -288,6 +290,11 @@
     weekday:
     - wed
     - mon
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: input_boolean.mark_verlof
+      state: 'off'
   action:
   - service: switch.turn_on
     data: {}
@@ -833,8 +840,13 @@
   description: ''
   trigger:
   - platform: template
-    value_template: '{{ ((now().strftime("%s") | int + 1200) | timestamp_custom("%H:%M")) == states.input_datetime.wakeup.state  }}'
-    action:
+    value_template: '{{ states(''sensor.time'') == (state_attr(''input_datetime.wakeup'',
+      ''timestamp'') - 1200) |timestamp_custom(''%H:%M'', local=True) }}'
+  condition:
+  - condition: zone
+    entity_id: person.mark_bierlaagh
+    zone: zone.home
+  action:
   - service: light.turn_on
     target:
       entity_id:
@@ -863,6 +875,67 @@
           - delay:
               hours: 0
               minutes: 0
-              seconds: 4
-              milliseconds: 500
+              seconds: 6
+              milliseconds: 750
+  mode: single
+- id: '1702156731764'
+  alias: test time trigger template
+  description: ''
+  trigger:
+  - platform: template
+    value_template: '{{ states(''sensor.time'') == (state_attr(''input_datetime.first_alarm'',
+      ''timestamp'') - 1200) |timestamp_custom(''%H:%M'', local=True) }}'
+  condition: []
+  action:
+  - service: light.turn_off
+    data: {}
+    target:
+      entity_id: light.light_lidl_bulb_2_woonkamer_bank
+  mode: single
+- id: '1702164589602'
+  alias: wake-up light sander
+  description: ''
+  trigger:
+  - platform: template
+    value_template: '{{ states(''sensor.time'') == (state_attr(''input_datetime.wekker_sander'',
+      ''timestamp'') - 1200) |timestamp_custom(''%H:%M'', local=True) }}'
+  condition:
+  - condition: zone
+    entity_id: person.sander_bierlaagh
+    zone: zone.home
+  action:
+  - service: light.turn_on
+    target:
+      entity_id:
+      - light.led_strip_sander
+    data:
+      rgb_color:
+      - 246
+      - 255
+      - 7
+      brightness: 1
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 2
+  - choose:
+    - conditions: []
+      sequence:
+      - repeat:
+          until:
+          - condition: numeric_state
+            entity_id: light.led_strip_sander
+            attribute: brightness
+            above: 250
+          sequence:
+          - service: light.turn_on
+            data:
+              brightness_step: 2
+            target:
+              entity_id: light.led_strip_sander
+          - delay:
+              hours: 0
+              minutes: 0
+              seconds: 6
+              milliseconds: 750
   mode: single

@@ -1,0 +1,14 @@
+---
+#
+# List of entities that is exposed to Google Assistant
+# From area: Living Room
+#
+    filter:
+      exclude_entities:
+
+      
+      include_entities:
+        - climate.thermostat
+        - climate.heat_panel_woonkamer
+        - light.lightgroup_eettafel
+        - switch.kerstverlichting
