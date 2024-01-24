@@ -939,3 +939,157 @@
               seconds: 6
               milliseconds: 750
   mode: single
+- id: '1705499425757'
+  alias: play message when the doorbell is pressed
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.doorbell_ringing
+    to: 'on'
+    from:
+  condition: []
+  action:
+  - service: media_player.play_media
+    target:
+      entity_id: media_player.woonkamer_4
+    data:
+      media_content_id: media-source://media_source/local/Knocking-on-door-sound.mp3
+      media_content_type: audio/mpeg
+    metadata:
+      title: Knocking-on-door-sound.mp3
+      thumbnail:
+      media_class: music
+      children_media_class:
+      navigateIds:
+      - {}
+      - media_content_type: app
+        media_content_id: media-source://media_source
+  - service: media_player.play_media
+    target:
+      entity_id: media_player.google_home_studeerkamer
+    data:
+      media_content_id: media-source://media_source/local/Knocking-on-door-sound.mp3
+      media_content_type: audio/mpeg
+    metadata:
+      title: Knocking-on-door-sound.mp3
+      thumbnail:
+      media_class: music
+      children_media_class:
+      navigateIds:
+      - {}
+      - media_content_type: app
+        media_content_id: media-source://media_source
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 0
+  - service: media_player.play_media
+    target:
+      entity_id: media_player.woonkamer_4
+    data:
+      media_content_id: media-source://tts/google_translate?message=knock+knock+have+a+look+at+the+door&language=en
+      media_content_type: provider
+    metadata:
+      title: knock knock have a look at the door
+      thumbnail: https://brands.home-assistant.io/_/google_translate/logo.png
+      media_class: app
+      children_media_class:
+      navigateIds:
+      - {}
+      - media_content_type: app
+        media_content_id: media-source://tts
+      - media_content_type: provider
+        media_content_id: media-source://tts/google_translate?message=knock+knock+have+a+look+at+the+door&language=en
+  - service: media_player.play_media
+    target:
+      entity_id: media_player.google_home_studeerkamer
+    data:
+      media_content_id: media-source://tts/google_translate?message=knock+knock+have+a+look+at+the+door&language=en
+      media_content_type: provider
+    metadata:
+      title: knock knock have a look at the door
+      thumbnail: https://brands.home-assistant.io/_/google_translate/logo.png
+      media_class: app
+      children_media_class:
+      navigateIds:
+      - {}
+      - media_content_type: app
+        media_content_id: media-source://tts
+      - media_content_type: provider
+        media_content_id: media-source://tts/google_translate?message=knock+knock+have+a+look+at+the+door&language=en
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 3
+      milliseconds: 0
+  - service: media_player.play_media
+    target:
+      entity_id: media_player.woonkamer_4
+    data:
+      media_content_id: media-source://media_source/local/Knocking-on-door-sound.mp3
+      media_content_type: audio/mpeg
+    metadata:
+      title: Knocking-on-door-sound.mp3
+      thumbnail:
+      media_class: music
+      children_media_class:
+      navigateIds:
+      - {}
+      - media_content_type: app
+        media_content_id: media-source://media_source
+  - service: media_player.play_media
+    target:
+      entity_id: media_player.google_home_studeerkamer
+    data:
+      media_content_id: media-source://media_source/local/Knocking-on-door-sound.mp3
+      media_content_type: audio/mpeg
+    metadata:
+      title: Knocking-on-door-sound.mp3
+      thumbnail:
+      media_class: music
+      children_media_class:
+      navigateIds:
+      - {}
+      - media_content_type: app
+        media_content_id: media-source://media_source
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 0
+  - service: media_player.play_media
+    target:
+      entity_id: media_player.google_home_studeerkamer
+    data:
+      media_content_id: media-source://tts/google_translate?message=knock+knock+have+a+look+at+the+door&language=en
+      media_content_type: provider
+    metadata:
+      title: knock knock have a look at the door
+      thumbnail: https://brands.home-assistant.io/_/google_translate/logo.png
+      media_class: app
+      children_media_class:
+      navigateIds:
+      - {}
+      - media_content_type: app
+        media_content_id: media-source://tts
+      - media_content_type: provider
+        media_content_id: media-source://tts/google_translate?message=knock+knock+have+a+look+at+the+door&language=en
+  - service: media_player.play_media
+    target:
+      entity_id: media_player.woonkamer_4
+    data:
+      media_content_id: media-source://tts/google_translate?message=knock+knock+have+a+look+at+the+door&language=en
+      media_content_type: provider
+    metadata:
+      title: knock knock have a look at the door
+      thumbnail: https://brands.home-assistant.io/_/google_translate/logo.png
+      media_class: app
+      children_media_class:
+      navigateIds:
+      - {}
+      - media_content_type: app
+        media_content_id: media-source://tts
+      - media_content_type: provider
+        media_content_id: media-source://tts/google_translate?message=knock+knock+have+a+look+at+the+door&language=en

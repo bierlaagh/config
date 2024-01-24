@@ -74,3 +74,26 @@ sensor:
 #        state: >- 
 #           {{states.sensor.watermeter.attributes["waterquantity"] |float /1000}}
 #        state_class: total_increasing
+
+  - platform: toon_smartmeter
+    host: 192.168.178.151
+    port: 80
+    scan_interval: 10
+    resources:
+      - gasused
+      - gasusedcnt
+      - elecusageflowpulse
+      - elecusagecntpulse
+      - elecusageflowlow
+      - elecusagecntlow
+      - elecusageflowhigh
+      - elecusagecnthigh
+      - elecprodflowlow
+      - elecprodcntlow
+      - elecprodflowhigh
+      - elecprodcnthigh
+      - elecsolar
+      - elecsolarcnt
+      - heat
+      - waterflow
+      - waterquantity

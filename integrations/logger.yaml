@@ -7,7 +7,8 @@
 #
 logger:
   default: warning
-
+  logs:
+    custom_components.toon_smartmeter: debug
   filters:
     homeassistant:
       # This can happen during restart having Ingress tabs open.
