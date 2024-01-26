@@ -1,0 +1,8 @@
+platform: template
+sensors:
+  average_water_weekly_shower:
+    friendly_name: "gemiddeld waterverbruik douchen deze week"
+    unit_of_measurement: "L"
+    icon_template: "mdi:water"
+    value_template: >-
+      {{ (states('sensor.waterverbuik_douchen_deze_week')|float / states('sensor.weekly_douchecount')|float )| round(1) }}

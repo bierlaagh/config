@@ -5,6 +5,9 @@ sensors:
     unit_of_measurement: "L"
     icon_template: "mdi:water"
     value_template: >-
-      {% set z = states('sensor.waterverbuik_douchen_vandaag') | float %}
-      {% set y = states('sensor.daily_douchecount') | float %}
-      {{ ( z  / y ) | round(2) }}
+      {% if (states('sensor.waterverbuik_douchen_vandaag') == '0') %}
+      {{ states('sensor.waterverbuik_douchen_vandaag') }}
+      {% else %}
+      {{ (states('sensor.waterverbuik_douchen_vandaag')|float / states('sensor.daily_douchecount')|float )|round(1)}}
+      {% endif %}
+     

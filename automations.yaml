@@ -1093,3 +1093,79 @@
         media_content_id: media-source://tts
       - media_content_type: provider
         media_content_id: media-source://tts/google_translate?message=knock+knock+have+a+look+at+the+door&language=en
+- id: '1706193105837'
+  alias: douchen aan teller 1 omhoog
+  description: ''
+  trigger:
+  - type: moist
+    platform: device
+    device_id: a26575e155a25af7d316e306ede1a14e
+    entity_id: binary_sensor.sensor_water_leak_badkamer_water_leak
+    domain: binary_sensor
+  condition: []
+  action:
+  - service: counter.increment
+    data: {}
+    target:
+      entity_id: counter.shower_counter
+  mode: single
+- id: '1706198114429'
+  alias: Set watermeter counter as start value when shower starts
+  description: ''
+  trigger:
+  - type: moist
+    platform: device
+    device_id: a26575e155a25af7d316e306ede1a14e
+    entity_id: binary_sensor.sensor_water_leak_badkamer_water_leak
+    domain: binary_sensor
+  condition: []
+  action:
+  - service: counter.set_value
+    data_template:
+      value: '{{states("sensor.watermeter_quantity")}}'
+    target:
+      entity_id: counter.shower_water_start
+  mode: single
+- id: '1706199091848'
+  alias: Set watermeter counter as stop value when shower stops
+  description: ''
+  trigger:
+  - type: not_moist
+    platform: device
+    device_id: a26575e155a25af7d316e306ede1a14e
+    entity_id: 9fe0f80043353cf2bb4a7eceee93146a
+    domain: binary_sensor
+  condition: []
+  action:
+  - service: counter.set_value
+    data_template:
+      value: '{{states("sensor.watermeter_quantity")}}'
+    target:
+      entity_id: counter.shower_water_stop
+  mode: single
+- id: '1706207087312'
+  alias: waterverbruik douchen aanpassen
+  description: ''
+  trigger: []
+  condition: []
+  action:
+  - service: counter.set_value
+    target:
+      entity_id: counter.water_verbruik_douchen
+    data:
+      value:
+        '[object Object]':
+  mode: single
+- id: '1706209857266'
+  alias: test watermeter aanpassen
+  description: ''
+  trigger: []
+  condition: []
+  action:
+  - service: counter.set_value
+    target:
+      entity_id: counter.water_verbruik_douchen
+    data:
+      value:
+        '[object Object]':
+  mode: single

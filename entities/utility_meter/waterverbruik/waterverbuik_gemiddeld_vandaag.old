@@ -1,0 +1,9 @@
+---
+platform: template
+sensors:
+  waterverbuik_gemiddeld_vandaag:
+    friendly_name: "gemiddeld waterverbruik douchen vandaag"
+    unit_of_measurement: "L"
+    icon_template: "mdi:water"
+    value_template: >-
+      {{ (states('input_number.water_douchen')|float / states('sensor.daily_douchecount')|float ) }}
