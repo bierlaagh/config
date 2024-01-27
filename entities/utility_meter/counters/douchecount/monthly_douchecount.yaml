@@ -1,4 +1,0 @@
----
-monthly_douchecount:
-  source: counter.shower_counter
-  cycle: monthly

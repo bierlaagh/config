@@ -1,0 +1,4 @@
+---
+water_verbuik_douchen_deze_week:
+  source: input_number.douchen_helper_waterverbruik
+  cycle: weekly

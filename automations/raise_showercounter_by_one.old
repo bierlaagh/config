@@ -15,3 +15,4 @@
     target:
       entity_id: counter.shower_counter
   mode: single
+#new automation in place

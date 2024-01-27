@@ -1,0 +1,4 @@
+---
+douche_count_daily:
+  source: counter.douchen_helper_aantal_keer_gedoucht
+  cycle: daily

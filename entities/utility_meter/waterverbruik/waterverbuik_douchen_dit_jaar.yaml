@@ -1,4 +1,0 @@
----
-  waterverbuik_douchen_dit_jaar:
-    source: input_number.water_douchen
-    cycle: yearly  

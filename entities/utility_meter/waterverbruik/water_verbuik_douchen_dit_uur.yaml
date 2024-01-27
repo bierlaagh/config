@@ -1,0 +1,4 @@
+---
+  water_verbuik_douchen_dit_uur:
+    source: input_number.douchen_helper_waterverbruik
+    cycle: hourly

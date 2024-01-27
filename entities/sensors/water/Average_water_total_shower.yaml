@@ -5,6 +5,6 @@ sensors:
     unit_of_measurement: "L"
     icon_template: "mdi:water"
     value_template: >-
-      {% set x = states('sensor.waterverbruik_douchen') | float %}
-      {% set w = states('sensor.douche_count') | float %}
+      {% set x = states('input_number.douchen_helper_waterverbruik') | float %}
+      {% set w = states('counter.douchen_helper_aantal_keer_gedoucht') | float %}
       {{ ( x  / w ) | round(2) }}

@@ -1,4 +1,0 @@
----
-  waterverbuik_douchen_dit_kwartier:  
-    source: input_number.water_douchen
-    cycle: quarter-hourly

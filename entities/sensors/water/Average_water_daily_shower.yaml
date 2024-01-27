@@ -5,9 +5,8 @@ sensors:
     unit_of_measurement: "L"
     icon_template: "mdi:water"
     value_template: >-
-      {% if (states('sensor.waterverbuik_douchen_vandaag') == '0') %}
-      {{ states('sensor.waterverbuik_douchen_vandaag') }}
+      {% if (states('sensor.water_verbuik_douchen_vandaag') == '0') %}
+      {{ states('sensor.water_verbuik_douchen_vandaag') }}
       {% else %}
-      {{ (states('sensor.waterverbuik_douchen_vandaag')|float / states('sensor.daily_douchecount')|float )|round(1)}}
+      {{ (states('sensor.water_verbuik_douchen_vandaag')|float / states('sensor.douche_count_daily')|float )|round(1)}}
       {% endif %}
-     

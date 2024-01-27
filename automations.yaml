@@ -45,28 +45,6 @@
     type: send_command
     subtype: 'Off'
   mode: single
-- id: '1659816310485'
-  alias: wasdroger_altijd_aan
-  description: ''
-  trigger:
-  - platform: device
-    device_id: 7e2318529a1a26b28d70eb84b6397b14
-    domain: select
-    entity_id: select.plug_tuya_power_metered_14_wasdroger_indicator_mode
-    type: current_option_changed
-    to: 'off'
-  condition: []
-  action:
-  - device_id: 7e2318529a1a26b28d70eb84b6397b14
-    domain: select
-    entity_id: select.plug_tuya_power_metered_14_wasdroger_indicator_mode
-    type: select_option
-    option: 'on'
-  - service: telegram_bot.send_message
-    data:
-      message: wasdroger automatisch aangezet
-      title: 'wasdroger (on) automation triggered '
-  mode: single
 - id: '1662014325173'
   alias: Koelkast schakelaar altijd aan
   description: ''
@@ -221,22 +199,6 @@
     entity_id: light.lsc_light_strip_rgbcct
     domain: light
   mode: single
-- id: '1689104270636'
-  alias: douchen actief ventilator aan
-  description: ''
-  trigger:
-  - type: moist
-    platform: device
-    device_id: a26575e155a25af7d316e306ede1a14e
-    entity_id: binary_sensor.sensor_water_leak_badkamer_water_leak
-    domain: binary_sensor
-  condition: []
-  action:
-  - type: turn_on
-    device_id: 877b325b4ffaf5ea3447a5a518b55503
-    entity_id: switch.ac_06ead9a_2
-    domain: switch
-  mode: single
 - id: '1690489016248'
   alias: Jasper weg apparaten uit nieuw
   description: 'Jasper weg apparaten op zijn kamer uit en woonkamer '
@@ -260,7 +222,7 @@
       title: Jasper weg
   mode: single
 - id: '1692994951128'
-  alias: ventilator uit na 20 minuten
+  alias: douchen automation ventilator uit na 20 minuten
   description: ''
   trigger:
   - type: not_moist
@@ -1093,22 +1055,6 @@
         media_content_id: media-source://tts
       - media_content_type: provider
         media_content_id: media-source://tts/google_translate?message=knock+knock+have+a+look+at+the+door&language=en
-- id: '1706193105837'
-  alias: douchen aan teller 1 omhoog
-  description: ''
-  trigger:
-  - type: moist
-    platform: device
-    device_id: a26575e155a25af7d316e306ede1a14e
-    entity_id: binary_sensor.sensor_water_leak_badkamer_water_leak
-    domain: binary_sensor
-  condition: []
-  action:
-  - service: counter.increment
-    data: {}
-    target:
-      entity_id: counter.shower_counter
-  mode: single
 - id: '1706198114429'
   alias: Set watermeter counter as start value when shower starts
   description: ''
@@ -1159,13 +1105,99 @@
 - id: '1706209857266'
   alias: test watermeter aanpassen
   description: ''
-  trigger: []
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.test_action_douchen
   condition: []
   action:
-  - service: counter.set_value
+  - service: input_number.set_value
     target:
-      entity_id: counter.water_verbruik_douchen
+      entity_id: input_number.test_verbruik_douchen
     data:
-      value:
-        '[object Object]':
+      value: '{{ states(''input_number.test_verbruik_douchen'') | float + (states(''input_number.test_teller_stop'')
+        | float - states(''input_number.test_teller_start'')| float) }}'
+  mode: single
+- id: '1706373365207'
+  alias: Douchen automation start procedure
+  description: 'zet de ventilator aan
+
+    add teller +1
+
+    zet watermeter stand als start waarde'
+  trigger:
+  - type: moist
+    platform: device
+    device_id: a26575e155a25af7d316e306ede1a14e
+    entity_id: binary_sensor.sensor_water_leak_badkamer_water_leak
+    domain: binary_sensor
+  condition: []
+  action:
+  - service: counter.increment
+    target:
+      entity_id: counter.douchen_helper_aantal_keer_gedoucht
+    data: {}
+  - service: fan.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: fan.centrale_ventilator
+  - service: input_number.set_value
+    data_template:
+      value: '{{states("sensor.watermeter_quantity")}}'
+    target:
+      entity_id: input_number.douchen_helper_watermeter_startwaarde
+  mode: single
+- id: '1706378899307'
+  alias: Douchen automation stop procedure
+  description: ''
+  trigger:
+  - type: not_moist
+    platform: device
+    device_id: a26575e155a25af7d316e306ede1a14e
+    entity_id: 9fe0f80043353cf2bb4a7eceee93146a
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 0
+  condition: []
+  action:
+  - service: input_number.set_value
+    data_template:
+      value: '{{states("sensor.watermeter_quantity")}}'
+    target:
+      entity_id: input_number.douchen_helper_watermeter_stopwaarde
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 5
+      milliseconds: 0
+  - service: input_number.set_value
+    target:
+      entity_id: input_number.douchen_helper_watermeter
+    data:
+      value: '{{ states(''input_number.douchen_helper_watermeter_stopwaarde'') | float
+        - states(''input_number.douchen_helper_watermeter_startwaarde'')| float }}'
+  - service: input_number.set_value
+    target:
+      entity_id: input_number.douchen_helper_waterverbruik
+    data:
+      value: '{{ states(''input_number.douchen_helper_waterverbruik'') | float + (states(''input_number.douchen_helper_watermeter_stopwaarde'')
+        | float - states(''input_number.douchen_helper_watermeter_startwaarde'')|
+        float) }}'
+  mode: single
+- id: '1706380911260'
+  alias: Altijd aan automation powerplug heatpanel altijd aan
+  description: powerplug_heatpanel_altijd_aan
+  trigger:
+  - platform: state
+    entity_id:
+    - switch.power_meter_heater_woonkamer
+    to: 'off'
+  action:
+  - service: switch.turn_on
+    target:
+      entity_id: switch.power_meter_heater_woonkamer
+    data: {}
   mode: single

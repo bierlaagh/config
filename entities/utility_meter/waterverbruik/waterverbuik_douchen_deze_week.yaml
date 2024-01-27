@@ -1,4 +1,0 @@
----
-waterverbuik_douchen_deze_week:
-  source: input_number.water_douchen
-  cycle: weekly

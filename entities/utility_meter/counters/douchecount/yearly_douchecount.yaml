@@ -1,4 +1,0 @@
----
-yearly_douchecount:
-  source: counter.shower_counter
-  cycle: yearly

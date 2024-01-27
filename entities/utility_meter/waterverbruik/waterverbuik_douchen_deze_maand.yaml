@@ -1,4 +1,0 @@
----
-waterverbuik_douchen_deze_maand:
-  source: input_number.water_douchen
-  cycle: monthly

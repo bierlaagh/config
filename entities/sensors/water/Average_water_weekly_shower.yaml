@@ -5,4 +5,4 @@ sensors:
     unit_of_measurement: "L"
     icon_template: "mdi:water"
     value_template: >-
-      {{ (states('sensor.waterverbuik_douchen_deze_week')|float / states('sensor.weekly_douchecount')|float )| round(1) }}
+      {{ (states('sensor.waterverbuik_douchen_deze_week')|float / states('sensor.douche_count_weekly')|float )| round(1) }}

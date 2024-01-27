@@ -1,4 +1,0 @@
----
-waterverbuik_douchen_vandaag:
-  source: input_number.water_douchen
-  cycle: daily
