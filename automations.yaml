@@ -1152,15 +1152,11 @@
   alias: Douchen automation stop procedure
   description: ''
   trigger:
-  - type: not_moist
-    platform: device
-    device_id: a26575e155a25af7d316e306ede1a14e
-    entity_id: 9fe0f80043353cf2bb4a7eceee93146a
-    domain: binary_sensor
-    for:
-      hours: 0
-      minutes: 0
-      seconds: 0
+  - platform: state
+    entity_id:
+    - binary_sensor.sensor_water_leak_badkamer_water_leak
+    from: 'on'
+    to: 'off'
   condition: []
   action:
   - service: input_number.set_value
