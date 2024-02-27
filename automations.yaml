@@ -1159,6 +1159,11 @@
     to: 'off'
   condition: []
   action:
+  - delay:
+      hours: 0
+      minutes: 1
+      seconds: 0
+      milliseconds: 0
   - service: input_number.set_value
     data_template:
       value: '{{states("sensor.watermeter_quantity")}}'

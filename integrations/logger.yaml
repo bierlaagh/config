@@ -10,6 +10,8 @@ logger:
   logs:
     custom_components.toon_smartmeter: debug
     custom_component.xtend_tuya: debug
+    custom_components.toon_climate: debug
+    custom_components.toon_boilerstatus: debug
   filters:
     homeassistant:
       # This can happen during restart having Ingress tabs open.

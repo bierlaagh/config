@@ -1,1 +1,37 @@
-[]
+- id: '1708461195380'
+  name: lampen jasper toggle
+  entities:
+    light.plafond_jasper:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - blink
+      - breathe
+      - okay
+      - channel_change
+      - finish_effect
+      - stop_effect
+      supported_color_modes:
+      - color_temp
+      effect:
+      color_mode: color_temp
+      brightness: 3
+      color_temp_kelvin: 2145
+      color_temp: 466
+      hs_color:
+      - 30
+      - 87.192
+      rgb_color:
+      - 255
+      - 143
+      - 32
+      xy_color:
+      - 0.585
+      - 0.386
+      friendly_name: plafond_jasper
+      supported_features: 44
+      state: 'on'
+  icon: mdi:light-flood-down
+  metadata: {}

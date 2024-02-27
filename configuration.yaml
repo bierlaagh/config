@@ -64,16 +64,7 @@ sensor:
       - 'date_time_iso'
       - 'time_date'
       - 'time_utc'
-      - 'beat'
-        #template:
-#  - sensor:
-#      - name: watermeter_toonwater
-#        unique_id: watermeter_toonwater
-#        device_class: water
-#        unit_of_measurement: "m³"
-#        state: >- 
-#           {{states.sensor.watermeter.attributes["waterquantity"] |float /1000}}
-#        state_class: total_increasing
+ 
 
   - platform: toon_smartmeter
     host: !secret roottoon_ip
@@ -97,3 +88,16 @@ sensor:
       - heat
       - waterflow
       - waterquantity
+  - platform: toon_boilerstatus
+    name: Toon
+    host: IP_ADDRESS
+    port: 80
+    scan_interval: 10
+    resources:
+      - boilersetpoint
+      - boilerintemp
+      - boilerouttemp
+      - boilerpressure
+      - boilermodulationlevel
+      - roomtemp
+      - roomtempsetpoint      

@@ -1,0 +1,14 @@
+---
+  platform: toon_boilerstatus
+  name: Toon
+  host: !secret roottoon_ip
+  port: 80
+  scan_interval: 10
+  resources:
+    - boilersetpoint
+    - boilerintemp
+    - boilerouttemp
+    - boilerpressure
+    - boilermodulationlevel
+    - roomtemp
+    - roomtempsetpoint
