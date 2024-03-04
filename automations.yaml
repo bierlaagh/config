@@ -19,32 +19,6 @@
       message: Waterbed automatisch aangezet
       title: 'Waterbed automation triggered '
   mode: single
-- id: '1656713056510'
-  alias: zwembadpomp on
-  description: ''
-  trigger:
-  - platform: time
-    at: 02:30:00
-  condition: []
-  action:
-  - device_id: 80204471ca7f905c3e0b1d4c3274ff71
-    domain: rfxtrx
-    type: send_command
-    subtype: 'On'
-  mode: single
-- id: '1656713133264'
-  alias: zwembadpomp off
-  description: ''
-  trigger:
-  - platform: time
-    at: 07:00:00
-  condition: []
-  action:
-  - device_id: 80204471ca7f905c3e0b1d4c3274ff71
-    domain: rfxtrx
-    type: send_command
-    subtype: 'Off'
-  mode: single
 - id: '1662014325173'
   alias: Koelkast schakelaar altijd aan
   description: ''
@@ -91,7 +65,7 @@
       title: Sander weg
   mode: single
 - id: '1673646033460'
-  alias: aquarium verlichting uit
+  alias: Aquarium - verlichting uit
   description: verlichting van aquarium uit (behalve rood)
   trigger:
   - platform: time
@@ -108,7 +82,7 @@
       entity_id: switch.plug_ikea_power_nometer_11_aquarium
   mode: single
 - id: '1673646176447'
-  alias: aquarium verlichting aan
+  alias: Aquarium - verlichting aan
   description: aquarium verlichting aan
   trigger:
   - platform: sun
@@ -122,7 +96,7 @@
       entity_id: switch.plug_ikea_power_nometer_11_aquarium
   mode: single
 - id: '1673646348303'
-  alias: Aquarium verlichting (rood) uit
+  alias: Aquarium - verlichting (rood) uit
   description: verlichting (rood)van aquarium uit half uur nadat de andere verlichting
     is uitgegaan
   trigger:
@@ -136,7 +110,7 @@
       device_id: b231fef629469f5bad7106f488e5e4b4
   mode: single
 - id: '1673646779266'
-  alias: aquarium verlichting (rood) aan
+  alias: Aquarium - verlichting (rood) aan
   description: aquarium verlichting rood aan ruim een uur voor de andere lichten in
     het aquarium aan gaan.
   trigger:
@@ -155,15 +129,15 @@
   description: waterkoker_altijd_aan
   trigger:
   - platform: device
-    type: changed_states
-    device_id: bbd2773b947b0a7fd5405ec3985ba1f9
-    entity_id: switch.plug_tuya_power_metered_4
+    type: turned_off
+    device_id: 85ea8c35ee1864831192b11182a8d157
+    entity_id: d3fb8676a4feccb9fe139e010940c4dd
     domain: switch
   condition: []
   action:
   - type: turn_on
-    device_id: bbd2773b947b0a7fd5405ec3985ba1f9
-    entity_id: switch.plug_tuya_power_metered_4
+    device_id: 85ea8c35ee1864831192b11182a8d157
+    entity_id: d3fb8676a4feccb9fe139e010940c4dd
     domain: switch
   mode: single
 - id: '1685404950577'
@@ -225,11 +199,11 @@
   alias: douchen automation ventilator uit na 20 minuten
   description: ''
   trigger:
-  - type: not_moist
-    platform: device
-    device_id: a26575e155a25af7d316e306ede1a14e
-    entity_id: 9fe0f80043353cf2bb4a7eceee93146a
-    domain: binary_sensor
+  - platform: state
+    entity_id:
+    - binary_sensor.sensor_water_leak_badkamer_water_leak
+    from: 'on'
+    to: 'off'
     for:
       hours: 0
       minutes: 20
@@ -539,7 +513,7 @@
     data: {}
   mode: single
 - id: '1699372371138'
-  alias: Wake-up light alarm with sunrise effect aquarium
+  alias: 'Wake-up light alarm with sunrise effect '
   description: ''
   use_blueprint:
     path: sbyx/wake-up-light-alarm-with-sunrise-effect.yaml
@@ -563,7 +537,7 @@
       title: Nicolette onderweg naar huis
   mode: single
 - id: '1699562089539'
-  alias: aquarium sunrise simulation
+  alias: Aquarium - sunrise simulation
   description: ''
   trigger:
   - platform: sun
@@ -672,7 +646,7 @@
               milliseconds: 0
   mode: single
 - id: '1700345515679'
-  alias: Aquarium sunset simulation
+  alias: Aquarium - sunset simulation
   description: ''
   trigger:
   - platform: time
@@ -927,6 +901,7 @@
       - {}
       - media_content_type: app
         media_content_id: media-source://media_source
+    enabled: false
   - service: media_player.play_media
     target:
       entity_id: media_player.google_home_studeerkamer
@@ -964,6 +939,7 @@
         media_content_id: media-source://tts
       - media_content_type: provider
         media_content_id: media-source://tts/google_translate?message=knock+knock+have+a+look+at+the+door&language=en
+    enabled: false
   - service: media_player.play_media
     target:
       entity_id: media_player.google_home_studeerkamer
@@ -1001,6 +977,7 @@
       - {}
       - media_content_type: app
         media_content_id: media-source://media_source
+    enabled: false
   - service: media_player.play_media
     target:
       entity_id: media_player.google_home_studeerkamer
@@ -1055,6 +1032,25 @@
         media_content_id: media-source://tts
       - media_content_type: provider
         media_content_id: media-source://tts/google_translate?message=knock+knock+have+a+look+at+the+door&language=en
+    enabled: false
+  - service: media_player.play_media
+    target:
+      entity_id: media_player.google_home_woonkamer
+    data:
+      media_content_id: media-source://tts/google_translate?message=knock+knock+have+a+look+at+the+door&language=en
+      media_content_type: provider
+    metadata:
+      title: knock knock have a look at the door
+      thumbnail: https://brands.home-assistant.io/_/google_translate/logo.png
+      media_class: app
+      children_media_class:
+      navigateIds:
+      - {}
+      - media_content_type: app
+        media_content_id: media-source://tts
+      - media_content_type: provider
+        media_content_id: media-source://tts/google_translate?message=knock+knock+have+a+look+at+the+door&language=en
+    enabled: true
 - id: '1706198114429'
   alias: Set watermeter counter as start value when shower starts
   description: ''

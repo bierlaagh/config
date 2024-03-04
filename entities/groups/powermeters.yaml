@@ -1,0 +1,20 @@
+---
+  group:
+  powermeters: 
+      name: powermeters
+      entities:
+      - sensor.plug_tuya_power_metered_2_ioniq_energy
+      - sensor.plug_tuya_power_metered_3_oven_energy
+      - sensor.plug_tuya_power_metered_5_vaatwasser_energy
+      - sensor.plug_tuya_power_metered_9_airfryer_energy
+      - sensor.plug_tuya_power_metered_10_virtuele_servers_energy
+      - sensor.plug_tuya_power_metered_12_wasmachine_energy
+      - sensor.plug_tuya_power_metered_13_koffieapparaat_energy
+      - sensor.plug_tuya_power_metered_17_heatpanel_energy
+      - sensor.tasmota_athom_plug_power_metered_1_media_woonkamer_energy_total
+      - sensor.tasmota_athom_plug_power_metered_2_waterbed_energy_total
+      - sensor.tasmota_athom_plug_power_metered_3_koelkast_keuken_energy_total
+      - sensor.tasmota_athom_plug_power_metered_4_wasdroger_energy_total_2
+      - sensor.tasmota_athom_plug_power_metered_7_media_sander_energy_total_3
+      - sensor.tasmota_athom_plug_power_metered_8_heater_woonkamer_energy_total
+      - sensor.flinq_smart_plug_vriezer_zolder_consumption
