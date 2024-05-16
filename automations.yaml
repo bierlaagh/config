@@ -185,9 +185,12 @@
   action:
   - service: light.turn_off
     target:
+      entity_id:
+      - light.plafond_jasper
+      - light.led_strip_jasper
       device_id:
-      - c19a67f8e10d3581c13d4391adc7e833
-      - 23885973c5decd67f87e59d48115246d
+      - 55e0c179dae105b2b8a28dcfd2e7c247
+      - 4f6a5c2098d2611c5e0a3d0feca70782
       - 92715a7c2d20dd04cf8871c42865a03e
     data: {}
   - service: notify.mark_telegram
@@ -196,7 +199,7 @@
       title: Jasper weg
   mode: single
 - id: '1692994951128'
-  alias: douchen automation ventilator uit na 20 minuten
+  alias: Douchen - automation ventilator uit na 20 minuten
   description: ''
   trigger:
   - platform: state
@@ -1115,7 +1118,7 @@
         | float - states(''input_number.test_teller_start'')| float) }}'
   mode: single
 - id: '1706373365207'
-  alias: Douchen automation start procedure
+  alias: Douchen - automation start procedure
   description: 'zet de ventilator aan
 
     add teller +1
@@ -1125,7 +1128,7 @@
   - type: moist
     platform: device
     device_id: a26575e155a25af7d316e306ede1a14e
-    entity_id: binary_sensor.sensor_water_leak_badkamer_water_leak
+    entity_id: 8d77755bc35f8dff4a33c3bda89f82a3
     domain: binary_sensor
   condition: []
   action:
@@ -1145,7 +1148,7 @@
       entity_id: input_number.douchen_helper_watermeter_startwaarde
   mode: single
 - id: '1706378899307'
-  alias: Douchen automation stop procedure
+  alias: Douchen - automation stop procedure
   description: ''
   trigger:
   - platform: state
