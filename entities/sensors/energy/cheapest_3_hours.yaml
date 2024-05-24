@@ -1,0 +1,40 @@
+platform: template
+sensors:  
+  cheapest_3_hours:
+    friendly_name: cheapest_3hours
+    value_template: >-
+      {% set t = now().hour %}
+      {%if (state_attr('sensor.average_electricity_price_today', 'prices_tomorrow'))!=[]%}
+        {% set l = state_attr('sensor.average_electricity_price_today', 'prices')[t:60]|sort(attribute='price')%}
+      {%else%}
+        {% set l = state_attr('sensor.average_electricity_price_today', 'prices_today')[t:60]|sort(attribute='price')%}
+      {%endif%}
+      {% set t = now() %}      
+      {{ (t >= as_datetime(l[0].time) and t <= as_datetime(l[0].time) + timedelta(hours = 1))
+        or (t >= as_datetime(l[1].time) and t <= as_datetime(l[1].time) + timedelta(hours = 1))
+        or (t >= as_datetime(l[2].time) and t <= as_datetime(l[2].time) + timedelta(hours = 1)) }}
+    attribute_templates:
+      hour1: >
+        {% set t = now().hour %}
+        {%if (state_attr('sensor.average_electricity_price_today', 'prices_tomorrow'))!=[]%}
+          {% set l = state_attr('sensor.average_electricity_price_today', 'prices')[t:60]|sort(attribute='price')%}
+        {%else%}
+          {% set l = state_attr('sensor.average_electricity_price_today', 'prices_today')[t:60]|sort(attribute='price')%}
+        {%endif%}
+        {{ (as_datetime(l[0].time)) }}
+      hour2: >
+        {% set t = now().hour %}
+        {%if (state_attr('sensor.average_electricity_price_today', 'prices_tomorrow'))!=[]%}
+          {% set l = state_attr('sensor.average_electricity_price_today', 'prices')[t:60]|sort(attribute='price')%}
+        {%else%}
+          {% set l = state_attr('sensor.average_electricity_price_today', 'prices_today')[t:60]|sort(attribute='price')%}
+        {%endif%}
+        {{ (as_datetime(l[1].time)) }}
+      hour3: >
+        {% set t = now().hour %}
+        {%if (state_attr('sensor.average_electricity_price_today', 'prices_tomorrow'))!=[]%}
+          {% set l = state_attr('sensor.average_electricity_price_today', 'prices')[t:60]|sort(attribute='price')%}
+        {%else%}
+          {% set l = state_attr('sensor.average_electricity_price_today', 'prices_today')[t:60]|sort(attribute='price')%}
+        {%endif%}
+        {{ (as_datetime(l[2].time)) }}

@@ -1,6 +1,20 @@
 ---
-#platform: integration
-#source: sensor.current_power
-#name: energy_spent
-#unit_prefix: k
-#round: 2
+  platform: template
+  sensors:
+    time_low_coming:
+      friendly_name: Time lowest price
+      unique_id: time_low_coming
+      device_class: timestamp
+      value_template: >
+        {% set fclist = state_attr('sensor.dynamische_prijzen_energie_current_electricity_market_price','forcast') %}
+        {% set pmin = fclist|map(attribute='price')|list|min %}
+        {{ (fclist|selectattr('price','eq',pmin)|first)['datetime'] }}
+
+    hours_low_coming:
+      friendly_name: Hours lowest price
+      unique_id: hours_low_coming
+      value_template: >
+        {% set n = as_timestamp(now()) %}
+        {% set x = as_timestamp( states('sensor.time_low_coming') ) %}
+        {% set t = (x-n) |timestamp_custom('%H') %}
+        {{ int(t) }}

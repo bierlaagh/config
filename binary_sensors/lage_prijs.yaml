@@ -1,0 +1,8 @@
+---
+  name: lage_prijs
+  unique_id: electricity_lowest_price_2_entso
+  state: >-
+    {% set l=state_attr('sensor.dynamische_prijzen_energie_average_electricity_price_today', 'records')|sort(attribute='Price') %}
+    {% set t = now().isoformat() %}
+    {{ (t >= l[0].Time and t <= l[0].End)
+    or (t >= l[1].Time and t <= l[1].End) }}
