@@ -223,7 +223,7 @@
   description: HNW apparaten aan
   trigger:
   - platform: time
-    at: 07:00:00
+    at: 08:00:00
   condition:
   - condition: time
     weekday:
@@ -234,6 +234,9 @@
     - condition: state
       entity_id: input_boolean.mark_verlof
       state: 'off'
+    - condition: zone
+      entity_id: person.mark_bierlaagh
+      zone: zone.home
   action:
   - service: switch.turn_on
     data: {}
@@ -245,7 +248,7 @@
   description: HNW apparaten uit
   trigger:
   - platform: time
-    at: '23:00:00'
+    at: '18:30:00'
   condition: []
   action:
   - service: switch.turn_off
@@ -409,18 +412,11 @@
   trigger:
   - platform: time
     at: '18:05:00'
-  condition:
-  - condition: time
-    weekday:
-    - mon
-    - tue
-    - wed
-    - thu
+  condition: []
   action:
   - service: climate.set_hvac_mode
     target:
-      entity_id:
-      - climate.your_eurom_heater
+      device_id: f4807beec42e136b359baa70e1e8071c
     data:
       hvac_mode: 'off'
   mode: single
@@ -1200,4 +1196,64 @@
     target:
       entity_id: switch.power_meter_heater_woonkamer
     data: {}
+  mode: single
+- id: '1716917312415'
+  alias: Lader Ioniq aan bij laag stroomtarief
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.zonneplan_current_tariff_group
+    to: low
+  condition: []
+  action:
+  - type: turn_on
+    device_id: a8e319474fa0fad99d052ecd1a61918d
+    entity_id: 841aac36c797d3be52574b912f094763
+    domain: switch
+  mode: single
+- id: '1716917399684'
+  alias: Lader Ioniq uit bij Hoog stroomtarief
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.zonneplan_current_tariff_group
+    to: high
+  condition: []
+  action:
+  - type: turn_off
+    device_id: a8e319474fa0fad99d052ecd1a61918d
+    entity_id: 841aac36c797d3be52574b912f094763
+    domain: switch
+  mode: single
+- id: '1716919731629'
+  alias: test zonneplan tarief normaal
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.zonneplan_current_tariff_group
+    to: normal
+  condition: []
+  action:
+  - type: turn_on
+    device_id: 981be15a6535c3a1821d3a25dbd066db
+    entity_id: b6c318eadf7d52e22aed1ef0148dbffa
+    domain: light
+  mode: single
+- id: '1717001827040'
+  alias: Lader Ioniq uit bij Normaal stroomtarief
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.zonneplan_current_tariff_group
+    to: normal
+  condition: []
+  action:
+  - type: turn_off
+    device_id: a8e319474fa0fad99d052ecd1a61918d
+    entity_id: 841aac36c797d3be52574b912f094763
+    domain: switch
   mode: single
