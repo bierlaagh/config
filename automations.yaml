@@ -45,8 +45,7 @@
     event: leave
   condition: []
   action:
-  - service: light.turn_off
-    data: {}
+  - data: {}
     target:
       entity_id:
       - light.light_lidl_g10_1_slaapkamer_sander
@@ -55,14 +54,14 @@
       - light.light_lidl_g10_4_slaapkamer_sander
       - light.light_lidl_g10_5_slaapkamer_sander
       - light.led_strip_sander
-  - service: switch.turn_off
-    target:
+    action: light.turn_off
+  - target:
       entity_id: switch.tasmota_athom_plug_power_metered_7_media_sander_4
     data: {}
-  - service: notify.mark_telegram
+    action: switch.turn_off
+  - action: notify.mobile_app_iphone_pro_max_mark
     data:
-      message: Sander Left Home
-      title: Sander weg
+      message: Sander left Home
   mode: single
 - id: '1673646033460'
   alias: Aquarium - verlichting uit
@@ -332,10 +331,9 @@
     event: leave
   condition: []
   action:
-  - service: notify.mark_telegram
+  - action: notify.mobile_app_iphone_pro_max_mark
     data:
-      message: Nicolette Left Home
-      title: Nicolette weg
+      message: Nicolette left home
   mode: single
 - id: '1696970121264'
   alias: Nicolette Bierlaagh arrives at Huis zone
@@ -348,10 +346,9 @@
     alias: When Nicolette Bierlaagh arrives at Huis zone
   condition: []
   action:
-  - service: notify.mark_telegram
+  - action: notify.mobile_app_iphone_pro_max_mark
     data:
-      message: Nicolette arrived at  Home
-      title: nicolette thuis
+      message: ' Nicolette arrived home'
   mode: single
 - id: '1696970229132'
   alias: Jasper arrived Home
@@ -363,10 +360,9 @@
     event: enter
   condition: []
   action:
-  - service: notify.mark_telegram
+  - action: notify.mobile_app_iphone_pro_max_mark
     data:
-      message: Jasper arrived Home
-      title: Jasper Thuis
+      message: Jasper arrived home
   mode: single
 - id: '1696970293831'
   alias: Sander arrived home
@@ -378,10 +374,9 @@
     event: enter
   condition: []
   action:
-  - service: notify.mark_telegram
+  - action: notify.mobile_app_iphone_pro_max_mark
     data:
       message: Sander arrived Home
-      title: Sander thuis
   mode: single
 - id: '1638129488106'
   alias: heatpanel studeerkamer on
@@ -530,10 +525,10 @@
     event: leave
   condition: []
   action:
-  - service: notify.mark_telegram
+  - action: notify.mobile_app_iphone_pro_max_mark
     data:
-      message: Nicolette Left work
-      title: Nicolette onderweg naar huis
+      message: 'Nicolette onderweg '
+      title: Nicolette verlaat Kruidvat
   mode: single
 - id: '1699562089539'
   alias: Aquarium - sunrise simulation
@@ -1207,10 +1202,11 @@
     to: low
   condition: []
   action:
-  - type: turn_on
-    device_id: a8e319474fa0fad99d052ecd1a61918d
-    entity_id: 841aac36c797d3be52574b912f094763
-    domain: switch
+  - action: switch.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: switch.flinq_smart_power_plug_2_socket_1
   mode: single
 - id: '1716917399684'
   alias: Lader Ioniq uit bij Hoog stroomtarief
@@ -1222,10 +1218,11 @@
     to: high
   condition: []
   action:
-  - type: turn_off
-    device_id: a8e319474fa0fad99d052ecd1a61918d
-    entity_id: 841aac36c797d3be52574b912f094763
-    domain: switch
+  - action: switch.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: switch.flinq_smart_power_plug_2_socket_1
   mode: single
 - id: '1716919731629'
   alias: test zonneplan tarief normaal
@@ -1252,8 +1249,46 @@
     to: normal
   condition: []
   action:
-  - type: turn_off
-    device_id: a8e319474fa0fad99d052ecd1a61918d
-    entity_id: 841aac36c797d3be52574b912f094763
-    domain: switch
+  - action: switch.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: switch.flinq_smart_power_plug_2_socket_1
+  mode: single
+- id: '1724705632323'
+  alias: Jasper weg apparaten uit
+  description: Jasper weg apparaten op zijn kamer uit
+  trigger:
+  - platform: zone
+    entity_id: person.jasper_bierlaagh
+    zone: zone.home
+    event: leave
+  condition: []
+  action:
+  - target:
+      entity_id:
+      - light.plafond_jasper_2
+      - light.led_strip_jasper
+    data: {}
+    action: light.turn_off
+  - action: notify.mobile_app_iphone_pro_max_mark
+    data:
+      message: Jasper left home
+  mode: single
+- id: '1725908231649'
+  alias: waarschuwing container aan de weg
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.afvalbeheer_morgen
+    from: geen
+    to:
+  condition: []
+  action:
+  - action: notify.mobile_app_iphone_pro_max_mark
+    metadata: {}
+    data:
+      title: container aan de weg
+      message: morgen moet de container aan de weg
   mode: single

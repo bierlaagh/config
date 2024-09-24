@@ -4,20 +4,36 @@
 #
 # https://www.home-assistant.io/integrations/recorder/
 #
+# on 15th august 2024 reverted to sqlite due to a DB failure on the mariaDB
+# tried te restore de DB but with no succes. 2 years of valuable data was lost si have to rebuild
 recorder:
-  db_url: !secret recorder_db_url
-    #exclude:
-    #    domains:
-    #    - media_player
-    #    - scan_store
-    #    - zone
-    #    - zwave
-    #    entities:
-    #    - sensor.date
-    #    - sensor.time
-    #    - sensor.date_time
-    #    - sensor.date_time_utc
-    #    - sensor.date_time_iso
-    #    - sensor.time_date
-    #    - sensor.time_utc
-    #    - sensor.internet_time
+#  db_url: !secret recorder_db_url
+    exclude:
+        domains:
+        - media_player
+        - scan_store
+        - zone
+        - zwave
+        entity_globs:
+        - automation.prese*
+        - sensor.uptimekuma*
+        - binary_sensor.uptimekuma*
+        - sensor.*_controller_action
+        - sensor.valetudo_dreame_current*
+        - sensor.valetudo_dreame_main*
+        - button.valetudo_dreame_reset_*
+        - input_text.*_controller_helper
+        - input_text.*_button_helper
+        - sensor.*_beacon
+        - script.security_*_to_position*
+        - input_boolean.*_previous_*
+        - input_number.*_previous_*
+        entities:
+        - sensor.date
+        - sensor.time
+        - sensor.date_time
+        - sensor.date_time_utc
+        - sensor.date_time_iso
+        - sensor.time_date
+        - sensor.time_utc
+        - sensor.internet_time
