@@ -1,0 +1,8 @@
+---
+platform: template
+sensors:
+    watermeter_tellerstand:
+      friendly_name: "Watermeter tellerstand"
+      unit_of_measurement: 'L'
+      value_template: >-
+          {{ states.sensor.water_meter_teller_stand.state | float + 1963005 }}

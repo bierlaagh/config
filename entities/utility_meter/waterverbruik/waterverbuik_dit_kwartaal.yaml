@@ -1,4 +1,4 @@
 ---
 waterverbuik_dit_kwartaal:
-  source: sensor.watermeter_quantity
+  source: sensor.watermeter_tellerstand
   cycle: quarterly

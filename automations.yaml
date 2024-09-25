@@ -1123,20 +1123,20 @@
     domain: binary_sensor
   condition: []
   action:
-  - service: counter.increment
-    target:
+  - target:
       entity_id: counter.douchen_helper_aantal_keer_gedoucht
     data: {}
-  - service: fan.turn_on
-    metadata: {}
+    action: counter.increment
+  - metadata: {}
     data: {}
     target:
       entity_id: fan.centrale_ventilator
-  - service: input_number.set_value
-    data_template:
-      value: '{{states("sensor.watermeter_quantity")}}'
+    action: fan.turn_on
+  - data_template:
+      value: '{{states("sensor.watermeter_tellerstand")}}'
     target:
       entity_id: input_number.douchen_helper_watermeter_startwaarde
+    action: input_number.set_value
   mode: single
 - id: '1706378899307'
   alias: Douchen - automation stop procedure
@@ -1154,29 +1154,29 @@
       minutes: 1
       seconds: 0
       milliseconds: 0
-  - service: input_number.set_value
-    data_template:
-      value: '{{states("sensor.watermeter_quantity")}}'
+  - data_template:
+      value: '{{states("sensor.watermeter_tellerstand")}}'
     target:
       entity_id: input_number.douchen_helper_watermeter_stopwaarde
+    action: input_number.set_value
   - delay:
       hours: 0
       minutes: 0
       seconds: 5
       milliseconds: 0
-  - service: input_number.set_value
-    target:
+  - target:
       entity_id: input_number.douchen_helper_watermeter
     data:
       value: '{{ states(''input_number.douchen_helper_watermeter_stopwaarde'') | float
         - states(''input_number.douchen_helper_watermeter_startwaarde'')| float }}'
-  - service: input_number.set_value
-    target:
+    action: input_number.set_value
+  - target:
       entity_id: input_number.douchen_helper_waterverbruik
     data:
       value: '{{ states(''input_number.douchen_helper_waterverbruik'') | float + (states(''input_number.douchen_helper_watermeter_stopwaarde'')
         | float - states(''input_number.douchen_helper_watermeter_startwaarde'')|
         float) }}'
+    action: input_number.set_value
   mode: single
 - id: '1706380911260'
   alias: Altijd aan automation powerplug heatpanel altijd aan

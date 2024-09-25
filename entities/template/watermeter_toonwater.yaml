@@ -3,10 +3,10 @@
 # 
 #
 sensor:
-  - name: watermeter_toonwater
-    unique_id: watermeter_toonwater
-    unit_of_measurement: m³
+  - name: watermeter_tellerstand
+    unique_id: watermeter_tellerstand
+    unit_of_measurement: L
     device_class: water
     state: >- 
-        {{states.sensor.watermeter.attributes["waterquantity"] |float /1000}}
+        {{states.sensor.water_meter_teller_stand.state | float + 1963005 }}
     state_class: total_increasing
