@@ -1,4 +1,4 @@
 ---
 waterverbuik_deze_dag:
-  source: sensor.watermeter_tellerstand
+  source: sensor.water_meter_teller_totaal
   cycle: daily

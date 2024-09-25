@@ -1,4 +1,4 @@
 ---
 waterverbuik_deze_week:
-  source: sensor.watermeter_tellerstand
+  source: sensor.water_meter_teller_totaal
   cycle: weekly

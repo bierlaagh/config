@@ -1,4 +1,4 @@
 ---
 waterverbuik_dit_uur:
-  source: sensor.watermeter_tellerstand
+  source: sensor.water_meter_teller_totaal
   cycle: hourly 

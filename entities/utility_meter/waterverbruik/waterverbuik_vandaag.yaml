@@ -1,4 +1,4 @@
 ---
 waterverbuik_vandaag:
-  source: sensor.watermeter_quantity
+  source: sensor.water_meter_teller_totaal
   cycle: daily

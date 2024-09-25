@@ -6,6 +6,6 @@
 # https://www.eneco.nl/energieproducten/toon-thermostaat/
 # https://www.home-assistant.io/integrations/toon/
 #
-toon:
-  client_id: !secret toon_client_id
-  client_secret: !secret toon_client_secret
+#toon:
+#  client_id: !secret toon_client_id
+#  client_secret: !secret toon_client_secret

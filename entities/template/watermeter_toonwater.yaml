@@ -8,5 +8,5 @@ sensor:
     unit_of_measurement: L
     device_class: water
     state: >- 
-        {{states.sensor.water_meter_teller_stand.state | float + 1963005 }}
+        {{states.sensor.water_meter_teller_totaal.state | float + 1963152 }}
     state_class: total_increasing
