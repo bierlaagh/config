@@ -768,25 +768,26 @@
 - id: '1702069838844'
   alias: wake-up light Mark
   description: ''
-  trigger:
-  - platform: template
-    value_template: '{{ states(''sensor.time'') == (state_attr(''input_datetime.wakeup'',
-      ''timestamp'') - 1200) |timestamp_custom(''%H:%M'', local=True) }}'
-  condition:
+  triggers:
+  - value_template: '{{ states(''sensor.time'') == (state_attr(''input_datetime.wakeup'',
+      ''timestamp'') - 900) |timestamp_custom(''%H:%M'', local=True) }}'
+    trigger: template
+  conditions:
   - condition: zone
     entity_id: person.mark_bierlaagh
     zone: zone.home
-  action:
-  - service: light.turn_on
-    target:
+  actions:
+  - target:
       entity_id:
       - light.light_tuya_ledstrip_masterbedroom
     data:
       brightness: 1
+    action: light.turn_on
   - delay:
       hours: 0
       minutes: 0
-      seconds: 2
+      seconds: 1
+      milliseconds: 500
   - choose:
     - conditions: []
       sequence:
@@ -797,15 +798,15 @@
             attribute: brightness
             above: 250
           sequence:
-          - service: light.turn_on
-            data:
+          - data:
               brightness_step: 2
             target:
               entity_id: light.light_tuya_ledstrip_masterbedroom
+            action: light.turn_on
           - delay:
               hours: 0
               minutes: 0
-              seconds: 6
+              seconds: 4
               milliseconds: 750
   mode: single
 - id: '1702156731764'
@@ -1209,13 +1210,16 @@
 - id: '1716917399684'
   alias: Lader Ioniq uit bij Hoog stroomtarief
   description: ''
-  trigger:
-  - platform: state
-    entity_id:
+  triggers:
+  - entity_id:
     - sensor.zonneplan_current_tariff_group
     to: high
-  condition: []
-  action:
+    trigger: state
+  conditions:
+  - condition: state
+    entity_id: input_boolean.nic_werken
+    state: 'off'
+  actions:
   - action: switch.turn_off
     metadata: {}
     data: {}
@@ -1240,13 +1244,16 @@
 - id: '1717001827040'
   alias: Lader Ioniq uit bij Normaal stroomtarief
   description: ''
-  trigger:
-  - platform: state
-    entity_id:
+  triggers:
+  - entity_id:
     - sensor.zonneplan_current_tariff_group
     to: normal
-  condition: []
-  action:
+    trigger: state
+  conditions:
+  - condition: state
+    entity_id: input_boolean.nic_werken
+    state: 'off'
+  actions:
   - action: switch.turn_off
     metadata: {}
     data: {}
@@ -1289,4 +1296,80 @@
     data:
       title: container aan de weg
       message: morgen moet de container aan de weg
+  mode: single
+- id: '1731273631348'
+  alias: HNW apparaten aan nieuw
+  description: HNW apparaten aan
+  triggers:
+  - at: 07:00:00
+    trigger: time
+  conditions:
+  - condition: time
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+  actions:
+  - target:
+      device_id: 3df138e4629f88a5a4de200716cfee4d
+    action: switch.turn_on
+    data: {}
+  mode: single
+- id: '1731273812877'
+  alias: HNW apparaten uit nieuw
+  description: HNW apparaten uit
+  triggers:
+  - at: '20:00:00'
+    trigger: time
+  conditions: []
+  actions:
+  - target:
+      device_id: 3df138e4629f88a5a4de200716cfee4d
+    action: switch.turn_off
+    data: {}
+  mode: single
+- id: '1732127168711'
+  alias: zet de schakelaar nic werken aan
+  description: deze zorgt dat de standverwarming in de winter aan kan
+  triggers:
+  - trigger: time
+    at: 05:50:00
+  conditions:
+  - condition: time
+    weekday:
+    - mon
+    - wed
+    - fri
+  actions:
+  - action: input_boolean.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: input_boolean.nic_werken
+  - action: switch.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: switch.flinq_smart_power_plug_2_socket_1
+  mode: single
+- id: '1732128637416'
+  alias: Zet schakelaar Nic werken weer uit
+  description: deze zorgt dat de standverwarming in de winter aan kan en na een bepaalde
+    tijd de automation obv tarief het weer overneemt
+  triggers:
+  - trigger: time
+    at: 07:40:00
+  conditions:
+  - condition: time
+    weekday:
+    - mon
+    - wed
+    - fri
+  actions:
+  - action: input_boolean.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: input_boolean.nic_werken
   mode: single
