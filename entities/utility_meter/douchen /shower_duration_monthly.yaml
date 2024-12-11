@@ -1,0 +1,4 @@
+---
+shower_duration_monthly:
+  source: input_number.shower_duration_total
+  cycle: monthly

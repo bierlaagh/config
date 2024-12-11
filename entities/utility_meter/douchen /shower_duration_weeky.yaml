@@ -1,0 +1,4 @@
+---
+shower_duration_weekly:
+  source: input_number.shower_duration_total
+  cycle: weekly
