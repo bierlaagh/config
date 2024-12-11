@@ -1,0 +1,11 @@
+---
+platform: template
+sensors:
+  shower_duration_total_formatted:
+    friendly_name: "Total Shower Duration Formatted"
+    value_template: >
+      {% set total_seconds = states('input_number.shower_duration_total') | int %}
+      {% set minutes = total_seconds // 60 %}
+      {% set seconds = total_seconds % 60 %}
+      {{ '%02d:%02d' | format(minutes, seconds) }}
+    icon_template: mdi:timer

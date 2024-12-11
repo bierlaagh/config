@@ -38,13 +38,13 @@
 - id: '1673644879157'
   alias: Sander weg lampen uit
   description: Sander weg lampen op zijn kamer uit
-  trigger:
-  - platform: zone
-    entity_id: person.sander_bierlaagh
+  triggers:
+  - entity_id: person.sander_bierlaagh
     zone: zone.home
     event: leave
-  condition: []
-  action:
+    trigger: zone
+  conditions: []
+  actions:
   - data: {}
     target:
       entity_id:
@@ -59,6 +59,7 @@
       entity_id: switch.tasmota_athom_plug_power_metered_7_media_sander_4
     data: {}
     action: switch.turn_off
+    enabled: false
   - action: notify.mobile_app_iphone_pro_max_mark
     data:
       message: Sander left Home
@@ -776,6 +777,13 @@
   - condition: zone
     entity_id: person.mark_bierlaagh
     zone: zone.home
+  - condition: time
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
   actions:
   - target:
       entity_id:
@@ -1373,3 +1381,29 @@
     target:
       entity_id: input_boolean.nic_werken
   mode: single
+- id: '1733861511362'
+  alias: Track Shower Duration
+  description: Calculate the time the shower is on and update the total duration
+  triggers:
+  - entity_id: binary_sensor.sensor_water_leak_badkamer_water_leak
+    from: 'on'
+    to: 'off'
+    trigger: state
+  actions:
+  - variables:
+      start_time: '{{ trigger.from_state.last_changed }}'
+      end_time: '{{ trigger.to_state.last_changed }}'
+      duration: '{{ (as_timestamp(end_time) - as_timestamp(start_time)) | int }}'
+  - target:
+      entity_id: input_number.shower_duration
+    data:
+      value: '{{ duration }}'
+    action: input_number.set_value
+  - target:
+      entity_id: input_number.shower_duration_total
+    data:
+      value: '{{ (states(''input_number.shower_duration_total'') | int) + duration
+        }}
+
+        '
+    action: input_number.set_value
