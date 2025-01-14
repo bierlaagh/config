@@ -1,40 +1,3 @@
-- id: '1653184899270'
-  alias: Waterbed_altijd_aan
-  description: ''
-  trigger:
-  - platform: device
-    type: turned_off
-    device_id: d63b212e73cd90bd00fb5baea1a1d89e
-    entity_id: switch.plug_tuya_power_metered_17_waterbed
-    domain: switch
-  condition: []
-  action:
-  - device_id: d63b212e73cd90bd00fb5baea1a1d89e
-    domain: select
-    entity_id: select.plug_tuya_power_metered_17_waterbed_indicator_mode
-    type: select_option
-    option: 'on'
-  - service: telegram_bot.send_message
-    data:
-      message: Waterbed automatisch aangezet
-      title: 'Waterbed automation triggered '
-  mode: single
-- id: '1662014325173'
-  alias: Koelkast schakelaar altijd aan
-  description: ''
-  trigger:
-  - platform: device
-    type: turned_off
-    device_id: d46309416de0231e9800d6840f10a1b4
-    entity_id: switch.tasmota
-    domain: switch
-  condition: []
-  action:
-  - type: turn_on
-    device_id: d46309416de0231e9800d6840f10a1b4
-    entity_id: switch.tasmota
-    domain: switch
-  mode: single
 - id: '1673644879157'
   alias: Sander weg lampen uit
   description: Sander weg lampen op zijn kamer uit
@@ -59,7 +22,7 @@
       entity_id: switch.tasmota_athom_plug_power_metered_7_media_sander_4
     data: {}
     action: switch.turn_off
-    enabled: false
+    enabled: true
   - action: notify.mobile_app_iphone_pro_max_mark
     data:
       message: Sander left Home
@@ -124,41 +87,21 @@
     target:
       device_id: b231fef629469f5bad7106f488e5e4b4
   mode: single
-- id: '1673989441815'
-  alias: waterkoker_altijd_aan
-  description: waterkoker_altijd_aan
-  trigger:
-  - platform: device
-    type: turned_off
-    device_id: 85ea8c35ee1864831192b11182a8d157
-    entity_id: d3fb8676a4feccb9fe139e010940c4dd
-    domain: switch
-  condition: []
-  action:
-  - type: turn_on
-    device_id: 85ea8c35ee1864831192b11182a8d157
-    entity_id: d3fb8676a4feccb9fe139e010940c4dd
-    domain: switch
-  mode: single
 - id: '1685404950577'
   alias: 'ledstrip buitenkeuken aan sunsets '
   description: 'ledstrip buitenkeuken aan sunsets '
-  trigger:
-  - platform: sun
-    event: sunset
+  triggers:
+  - event: sunset
     offset: -00:45:00
-  condition: []
-  action:
-  - type: turn_on
-    device_id: f5a4d73e154d62ca89aa360dc1255c03
-    entity_id: light.lsc_light_strip_rgbcct
-    domain: light
-  - service: light.turn_on
-    data: {}
+    trigger: sun
+  conditions: []
+  actions:
+  - data: {}
     target:
       device_id:
       - 280f9ec4c90220ff8e4a5ee440cdd93a
       - db6dbb8c0e5811360b21387070fd4e68
+    action: light.turn_on
   mode: single
 - id: '1685405059075'
   alias: ledstrip buitenkeuken uit
@@ -218,44 +161,6 @@
     target:
       entity_id: fan.centrale_ventilator
   mode: single
-- id: '1693942934647'
-  alias: Thuiswerken  apparaten aan
-  description: HNW apparaten aan
-  trigger:
-  - platform: time
-    at: 08:00:00
-  condition:
-  - condition: time
-    weekday:
-    - wed
-    - mon
-  - condition: and
-    conditions:
-    - condition: state
-      entity_id: input_boolean.mark_verlof
-      state: 'off'
-    - condition: zone
-      entity_id: person.mark_bierlaagh
-      zone: zone.home
-  action:
-  - service: switch.turn_on
-    data: {}
-    target:
-      device_id: 6836d6ce7db077bbf0c1d81b75e411a6
-  mode: single
-- id: '1693943174077'
-  alias: Thuiswerken apparaten uit
-  description: HNW apparaten uit
-  trigger:
-  - platform: time
-    at: '18:30:00'
-  condition: []
-  action:
-  - service: switch.turn_off
-    data: {}
-    target:
-      device_id: 6836d6ce7db077bbf0c1d81b75e411a6
-  mode: single
 - id: '1693944672664'
   alias: verlichting buitenkeuken uit
   description: led buitenkeuken uit
@@ -293,34 +198,22 @@
       entity_id: switch.plug_tuya_power_metered_13_koffieapparaat
     data: {}
   mode: single
-- id: '1696969115321'
-  alias: ' koffie automaat aanzetten om 7:00'
-  description: ''
-  trigger:
-  - platform: time
-    at: 07:00:00
-  condition: []
-  action:
-  - service: switch.turn_on
-    target:
-      entity_id: switch.plug_tuya_power_metered_13_koffieapparaat
-    data: {}
-  mode: single
 - id: '1696969733400'
-  alias: koffieapparaat uit bij bedtijd
+  alias: locale acties bij bedtijd
   description: ''
-  trigger:
-  - platform: state
-    entity_id:
+  triggers:
+  - entity_id:
     - input_boolean.bedtijd
     from: 'off'
     to: 'on'
-  condition: []
-  action:
-  - service: switch.turn_off
-    target:
-      entity_id: switch.plug_tuya_power_metered_13_koffieapparaat
-    data: {}
+    trigger: state
+  conditions: []
+  actions:
+  - target:
+      entity_id: climate.toon_thermostat_2
+    data:
+      temperature: 16
+    action: climate.set_temperature
   mode: single
 - id: '1696970000415'
   alias: Nicolette weg notificatie
@@ -402,20 +295,6 @@
     data:
       temperature: 21
   mode: single
-- id: '1639731038109'
-  alias: heatpanel studeerkamer off
-  description: ''
-  trigger:
-  - platform: time
-    at: '18:05:00'
-  condition: []
-  action:
-  - service: climate.set_hvac_mode
-    target:
-      device_id: f4807beec42e136b359baa70e1e8071c
-    data:
-      hvac_mode: 'off'
-  mode: single
 - id: '1698421612994'
   alias: voordeur open google helper
   description: ''
@@ -435,24 +314,6 @@
     target:
       entity_id:
       - lock.key_master_mark
-  mode: single
-- id: '1698422581976'
-  alias: front door switch machine status
-  description: ''
-  trigger:
-  - platform: state
-    entity_id:
-    - lock.key_master_mark
-    to: locked
-  condition:
-  - condition: state
-    entity_id: input_boolean.front_door
-    state: 'off'
-  action:
-  - service: input_boolean.turn_on
-    data: {}
-    target:
-      entity_id: input_boolean.front_door
   mode: single
 - id: '1698423053289'
   alias: voordeur dicht google helper
@@ -491,31 +352,6 @@
     target:
       entity_id: input_boolean.front_door
   mode: single
-- id: '1698423452889'
-  alias: When front door changes from On to Off
-  description: ''
-  trigger:
-  - platform: state
-    entity_id:
-    - lock.key_master_mark
-    to: unlocked
-  condition:
-  - condition: state
-    entity_id: input_boolean.front_door
-    state: 'on'
-  action:
-  - service: input_boolean.turn_off
-    data: {}
-  mode: single
-- id: '1699372371138'
-  alias: 'Wake-up light alarm with sunrise effect '
-  description: ''
-  use_blueprint:
-    path: sbyx/wake-up-light-alarm-with-sunrise-effect.yaml
-    input:
-      light_entity: light.light_tuya_ledstrip_masterbedroom
-      sunrise_duration: 10
-      manual_time: 00:35:00
 - id: '1699557119276'
   alias: Nicolette weg van werk
   description: ''
@@ -753,19 +589,6 @@
     target:
       entity_id: light.tasmota
   mode: single
-- id: '1700404967557'
-  alias: Tag Laden aan is scanned
-  description: ''
-  trigger:
-  - platform: tag
-    tag_id: e0982856-5220-45bc-ba56-fd005927b2d3
-  condition: []
-  action:
-  - service: light.toggle
-    data: {}
-    target:
-      entity_id: light.light_ikea_g10_hoek_bank
-  mode: single
 - id: '1702069838844'
   alias: wake-up light Mark
   description: ''
@@ -815,67 +638,6 @@
               hours: 0
               minutes: 0
               seconds: 4
-              milliseconds: 750
-  mode: single
-- id: '1702156731764'
-  alias: test time trigger template
-  description: ''
-  trigger:
-  - platform: template
-    value_template: '{{ states(''sensor.time'') == (state_attr(''input_datetime.first_alarm'',
-      ''timestamp'') - 1200) |timestamp_custom(''%H:%M'', local=True) }}'
-  condition: []
-  action:
-  - service: light.turn_off
-    data: {}
-    target:
-      entity_id: light.light_lidl_bulb_2_woonkamer_bank
-  mode: single
-- id: '1702164589602'
-  alias: wake-up light sander
-  description: ''
-  trigger:
-  - platform: template
-    value_template: '{{ states(''sensor.time'') == (state_attr(''input_datetime.wekker_sander'',
-      ''timestamp'') - 1200) |timestamp_custom(''%H:%M'', local=True) }}'
-  condition:
-  - condition: zone
-    entity_id: person.sander_bierlaagh
-    zone: zone.home
-  action:
-  - service: light.turn_on
-    target:
-      entity_id:
-      - light.led_strip_sander
-    data:
-      rgb_color:
-      - 246
-      - 255
-      - 7
-      brightness: 1
-  - delay:
-      hours: 0
-      minutes: 0
-      seconds: 2
-  - choose:
-    - conditions: []
-      sequence:
-      - repeat:
-          until:
-          - condition: numeric_state
-            entity_id: light.led_strip_sander
-            attribute: brightness
-            above: 250
-          sequence:
-          - service: light.turn_on
-            data:
-              brightness_step: 2
-            target:
-              entity_id: light.led_strip_sander
-          - delay:
-              hours: 0
-              minutes: 0
-              seconds: 6
               milliseconds: 750
   mode: single
 - id: '1705499425757'
@@ -1052,53 +814,6 @@
         media_content_id: media-source://tts/google_translate?message=knock+knock+have+a+look+at+the+door&language=en
     enabled: true
     action: media_player.play_media
-- id: '1706198114429'
-  alias: Set watermeter counter as start value when shower starts
-  description: ''
-  trigger:
-  - type: moist
-    platform: device
-    device_id: a26575e155a25af7d316e306ede1a14e
-    entity_id: binary_sensor.sensor_water_leak_badkamer_water_leak
-    domain: binary_sensor
-  condition: []
-  action:
-  - service: counter.set_value
-    data_template:
-      value: '{{states("sensor.watermeter_quantity")}}'
-    target:
-      entity_id: counter.shower_water_start
-  mode: single
-- id: '1706199091848'
-  alias: Set watermeter counter as stop value when shower stops
-  description: ''
-  trigger:
-  - type: not_moist
-    platform: device
-    device_id: a26575e155a25af7d316e306ede1a14e
-    entity_id: 9fe0f80043353cf2bb4a7eceee93146a
-    domain: binary_sensor
-  condition: []
-  action:
-  - service: counter.set_value
-    data_template:
-      value: '{{states("sensor.watermeter_quantity")}}'
-    target:
-      entity_id: counter.shower_water_stop
-  mode: single
-- id: '1706207087312'
-  alias: waterverbruik douchen aanpassen
-  description: ''
-  trigger: []
-  condition: []
-  action:
-  - service: counter.set_value
-    target:
-      entity_id: counter.water_verbruik_douchen
-    data:
-      value:
-        '[object Object]':
-  mode: single
 - id: '1706209857266'
   alias: test watermeter aanpassen
   description: ''
@@ -1114,36 +829,6 @@
     data:
       value: '{{ states(''input_number.test_verbruik_douchen'') | float + (states(''input_number.test_teller_stop'')
         | float - states(''input_number.test_teller_start'')| float) }}'
-  mode: single
-- id: '1706373365207'
-  alias: Douchen - automation start procedure
-  description: 'zet de ventilator aan
-
-    add teller +1
-
-    zet watermeter stand als start waarde'
-  trigger:
-  - type: moist
-    platform: device
-    device_id: a26575e155a25af7d316e306ede1a14e
-    entity_id: 8d77755bc35f8dff4a33c3bda89f82a3
-    domain: binary_sensor
-  condition: []
-  action:
-  - target:
-      entity_id: counter.douchen_helper_aantal_keer_gedoucht
-    data: {}
-    action: counter.increment
-  - metadata: {}
-    data: {}
-    target:
-      entity_id: fan.centrale_ventilator
-    action: fan.turn_on
-  - data_template:
-      value: '{{states("sensor.watermeter_tellerstand")}}'
-    target:
-      entity_id: input_number.douchen_helper_watermeter_startwaarde
-    action: input_number.set_value
   mode: single
 - id: '1706378899307'
   alias: Douchen - automation stop procedure
@@ -1185,20 +870,6 @@
         float) }}'
     action: input_number.set_value
   mode: single
-- id: '1706380911260'
-  alias: Altijd aan automation powerplug heatpanel altijd aan
-  description: powerplug_heatpanel_altijd_aan
-  trigger:
-  - platform: state
-    entity_id:
-    - switch.power_meter_heater_woonkamer
-    to: 'off'
-  action:
-  - service: switch.turn_on
-    target:
-      entity_id: switch.power_meter_heater_woonkamer
-    data: {}
-  mode: single
 - id: '1716917312415'
   alias: Lader Ioniq aan bij laag stroomtarief
   description: ''
@@ -1234,21 +905,6 @@
     target:
       entity_id: switch.flinq_smart_power_plug_2_socket_1
   mode: single
-- id: '1716919731629'
-  alias: test zonneplan tarief normaal
-  description: ''
-  trigger:
-  - platform: state
-    entity_id:
-    - sensor.zonneplan_current_tariff_group
-    to: normal
-  condition: []
-  action:
-  - type: turn_on
-    device_id: 981be15a6535c3a1821d3a25dbd066db
-    entity_id: b6c318eadf7d52e22aed1ef0148dbffa
-    domain: light
-  mode: single
 - id: '1717001827040'
   alias: Lader Ioniq uit bij Normaal stroomtarief
   description: ''
@@ -1268,26 +924,6 @@
     target:
       entity_id: switch.flinq_smart_power_plug_2_socket_1
   mode: single
-- id: '1724705632323'
-  alias: Jasper weg apparaten uit
-  description: Jasper weg apparaten op zijn kamer uit
-  trigger:
-  - platform: zone
-    entity_id: person.jasper_bierlaagh
-    zone: zone.home
-    event: leave
-  condition: []
-  action:
-  - target:
-      entity_id:
-      - light.plafond_jasper_2
-      - light.led_strip_jasper
-    data: {}
-    action: light.turn_off
-  - action: notify.mobile_app_iphone_pro_max_mark
-    data:
-      message: Jasper left home
-  mode: single
 - id: '1725908231649'
   alias: waarschuwing container aan de weg
   description: ''
@@ -1305,105 +941,27 @@
       title: container aan de weg
       message: morgen moet de container aan de weg
   mode: single
-- id: '1731273631348'
-  alias: HNW apparaten aan nieuw
-  description: HNW apparaten aan
+- id: '1734893056369'
+  alias: Set Thermostat When Everyone is not at home
+  description: Adjust thermostat when anyone leaves and no one else is at home
   triggers:
-  - at: 07:00:00
-    trigger: time
+  - entity_id:
+    - person.mark_bierlaagh
+    - person.jasper_bierlaagh
+    - person.nicolette_bierlaagh
+    - person.sander_bierlaagh
+    zone: zone.home
+    event: leave
+    trigger: zone
   conditions:
-  - condition: time
-    weekday:
-    - mon
-    - tue
-    - wed
-    - thu
+  - condition: template
+    value_template: "{{\n  states('person.mark_bierlaagh') != 'home' and\n  states('person.jasper_bierlaagh')
+      != 'home' and\n  states('person.nicolette_bierlaagh') != 'home' and\n  states('person.sander_bierlaagh')
+      != 'home'\n}}\n"
   actions:
   - target:
-      device_id: 3df138e4629f88a5a4de200716cfee4d
-    action: switch.turn_on
-    data: {}
-  mode: single
-- id: '1731273812877'
-  alias: HNW apparaten uit nieuw
-  description: HNW apparaten uit
-  triggers:
-  - at: '20:00:00'
-    trigger: time
-  conditions: []
-  actions:
-  - target:
-      device_id: 3df138e4629f88a5a4de200716cfee4d
-    action: switch.turn_off
-    data: {}
-  mode: single
-- id: '1732127168711'
-  alias: zet de schakelaar nic werken aan
-  description: deze zorgt dat de standverwarming in de winter aan kan
-  triggers:
-  - trigger: time
-    at: 05:50:00
-  conditions:
-  - condition: time
-    weekday:
-    - mon
-    - wed
-    - fri
-  actions:
-  - action: input_boolean.turn_on
-    metadata: {}
-    data: {}
-    target:
-      entity_id: input_boolean.nic_werken
-  - action: switch.turn_on
-    metadata: {}
-    data: {}
-    target:
-      entity_id: switch.flinq_smart_power_plug_2_socket_1
-  mode: single
-- id: '1732128637416'
-  alias: Zet schakelaar Nic werken weer uit
-  description: deze zorgt dat de standverwarming in de winter aan kan en na een bepaalde
-    tijd de automation obv tarief het weer overneemt
-  triggers:
-  - trigger: time
-    at: 07:40:00
-  conditions:
-  - condition: time
-    weekday:
-    - mon
-    - wed
-    - fri
-  actions:
-  - action: input_boolean.turn_off
-    metadata: {}
-    data: {}
-    target:
-      entity_id: input_boolean.nic_werken
-  mode: single
-- id: '1733861511362'
-  alias: Track Shower Duration
-  description: Calculate the time the shower is on and update the total duration
-  triggers:
-  - entity_id: binary_sensor.sensor_water_leak_badkamer_water_leak
-    from: 'on'
-    to: 'off'
-    trigger: state
-  actions:
-  - variables:
-      start_time: '{{ trigger.from_state.last_changed }}'
-      end_time: '{{ trigger.to_state.last_changed }}'
-      duration: '{{ (as_timestamp(end_time) - as_timestamp(start_time)) | int }}'
-  - target:
-      entity_id: input_number.shower_duration
+      entity_id: climate.toon_thermostat_2
     data:
-      value: '{{ duration }}'
-    action: input_number.set_value
-  - target:
-      entity_id: input_number.shower_duration_total
-    data:
-      value: '{{ (states(''input_number.shower_duration_total'') | int) + duration
-        }}
-
-        '
-    action: input_number.set_value
+      temperature: 16
+    action: climate.set_temperature
+  mode: single

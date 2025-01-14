@@ -1,0 +1,17 @@
+---
+platform: template
+sensors:
+    average_shower_duration_daily_formatted:
+      friendly_name: "Average Shower Duration daily (Formatted)"
+      value_template: >
+        {% set total_seconds = states('sensor.shower_duration_today') | float(0) %}
+        {% set shower_count = states('sensor.douche_count_daily') | int(0) %}
+        {% if shower_count > 0 %}
+          {% set avg_seconds = total_seconds / shower_count %}
+          {% set minutes = avg_seconds // 60 %}
+          {% set seconds = avg_seconds % 60 %}
+          {{ '%02d:%02d' | format(minutes, seconds) }}
+        {% else %}
+          "00:00"
+        {% endif %}
+      icon_template: mdi:timer-sand

@@ -1,5 +1,0 @@
-#---
-#ziggonext:
-#  username: !secret ziggo_username
-#  password: !secret ziggo_password
-#  country_code: nl

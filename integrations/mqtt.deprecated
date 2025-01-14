@@ -1,5 +1,0 @@
----
-  mqtt: 
-    broker: 192.168.178.59
-    username: !secret mqttuser
-    password: !secret mqttpass
