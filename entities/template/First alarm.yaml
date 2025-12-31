@@ -1,3 +1,0 @@
-sensor:
-      - name: "First alarm"
-        state: "{{ state_attr('input_datetime.first_alarm', 'timestamp') | timestamp_custom('%H:%M',local=True, None) }}"

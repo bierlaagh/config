@@ -1,3 +1,0 @@
-sensor:
-      - name: "Alarm set"
-        state: "{{ states('input_boolean.alarm') }}"

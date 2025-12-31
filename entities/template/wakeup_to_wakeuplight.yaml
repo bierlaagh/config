@@ -1,4 +1,0 @@
-sensor:
-      - name: "wakeuplight_alarm"
-        data:
-          time:"{{ (state_attr('input_datetime.wakeupalarm', 'timestamp') - 1200) | timestamp_custom('%H:%M:%S', false) }}"

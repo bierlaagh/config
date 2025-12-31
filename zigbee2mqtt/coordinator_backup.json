@@ -1,0 +1,402 @@
+{
+  "metadata": {
+    "format": "zigpy/open-coordinator-backup",
+    "version": 1,
+    "source": "zigbee-herdsman@7.0.4",
+    "internal": {
+      "date": "2025-12-31T13:49:09.255Z",
+      "znpVersion": 1
+    }
+  },
+  "stack_specific": {
+    "zstack": {
+      "tclk_seed": "52e15cb3720f1e54122b94d557ac20d3"
+    }
+  },
+  "coordinator_ieee": "00124b002e1e8e6e",
+  "pan_id": "eba5",
+  "extended_pan_id": "ff7cb370c8cf1f87",
+  "nwk_update_id": 0,
+  "security_level": 5,
+  "channel": 11,
+  "channel_mask": [
+    11
+  ],
+  "network_key": {
+    "key": "a8ca4d55dbb1e52b3ff238eb5ce4de30",
+    "sequence_number": 0,
+    "frame_counter": 1250
+  },
+  "devices": [
+    {
+      "nwk_address": "f244",
+      "ieee_address": "90fd9ffffed67164",
+      "is_child": false
+    },
+    {
+      "nwk_address": "5f60",
+      "ieee_address": "d0cf5efffe05c208",
+      "is_child": false
+    },
+    {
+      "nwk_address": "1c8c",
+      "ieee_address": "d0cf5efffe75f68b",
+      "is_child": false
+    },
+    {
+      "nwk_address": "e8d6",
+      "ieee_address": "d0cf5efffec7cc01",
+      "is_child": false
+    },
+    {
+      "nwk_address": "f78d",
+      "ieee_address": "d0cf5efffe04aa33",
+      "is_child": false
+    },
+    {
+      "nwk_address": "5552",
+      "ieee_address": "000d6ffffe693859",
+      "is_child": false
+    },
+    {
+      "nwk_address": "90d9",
+      "ieee_address": "086bd7fffe205856",
+      "is_child": false
+    },
+    {
+      "nwk_address": "7e1e",
+      "ieee_address": "14b457fffe7dfbc4",
+      "is_child": false
+    },
+    {
+      "nwk_address": "a5e4",
+      "ieee_address": "086bd7fffe5ca769",
+      "is_child": false
+    },
+    {
+      "nwk_address": "5367",
+      "ieee_address": "a4c138879081083e",
+      "is_child": false
+    },
+    {
+      "nwk_address": "b056",
+      "ieee_address": "a4c138832f9e8982",
+      "is_child": false
+    },
+    {
+      "nwk_address": "6585",
+      "ieee_address": "ccccccfffe58d97c",
+      "is_child": false
+    },
+    {
+      "nwk_address": "a6e7",
+      "ieee_address": "5c0272fffe6169e9",
+      "is_child": false
+    },
+    {
+      "nwk_address": "7159",
+      "ieee_address": "bc33acfffeed0f46",
+      "is_child": false
+    },
+    {
+      "nwk_address": "2be2",
+      "ieee_address": "14b457fffec8d8e1",
+      "is_child": false
+    },
+    {
+      "nwk_address": "fbe7",
+      "ieee_address": "a4c1384e878a245e",
+      "is_child": false
+    },
+    {
+      "nwk_address": "6d5f",
+      "ieee_address": "680ae2fffe93f287",
+      "is_child": false
+    },
+    {
+      "nwk_address": "bd44",
+      "ieee_address": "bc33acfffe7098a4",
+      "is_child": false
+    },
+    {
+      "nwk_address": "104b",
+      "ieee_address": "0c4314fffeb1b430",
+      "is_child": false
+    },
+    {
+      "nwk_address": "6ed8",
+      "ieee_address": "50325ffffe0ca8a8",
+      "is_child": false
+    },
+    {
+      "nwk_address": "d517",
+      "ieee_address": "0c4314fffed0f968",
+      "is_child": false
+    },
+    {
+      "nwk_address": "b8a7",
+      "ieee_address": "0c4314fffe6b06eb",
+      "is_child": false
+    },
+    {
+      "nwk_address": "ab7f",
+      "ieee_address": "ec1bbdfffeaa5370",
+      "is_child": false
+    },
+    {
+      "nwk_address": "fd87",
+      "ieee_address": "00158d000457ef77",
+      "is_child": false
+    },
+    {
+      "nwk_address": "5df",
+      "ieee_address": "14b457fffec672ea",
+      "is_child": false
+    },
+    {
+      "nwk_address": "5890",
+      "ieee_address": "60a423fffeff3c2b",
+      "is_child": false
+    },
+    {
+      "nwk_address": "d96f",
+      "ieee_address": "588e81fffed9848e",
+      "is_child": false
+    },
+    {
+      "nwk_address": "8607",
+      "ieee_address": "ccccccfffe55f3e4",
+      "is_child": false
+    },
+    {
+      "nwk_address": "f530",
+      "ieee_address": "a4c13892846486a6",
+      "is_child": false
+    },
+    {
+      "nwk_address": "f819",
+      "ieee_address": "5c0272fffe92ca79",
+      "is_child": false
+    },
+    {
+      "nwk_address": "e95c",
+      "ieee_address": "086bd7fffe522320",
+      "is_child": false
+    },
+    {
+      "nwk_address": "4ac3",
+      "ieee_address": "540f57fffe78c2eb",
+      "is_child": false
+    },
+    {
+      "nwk_address": "de35",
+      "ieee_address": "048727fffe4a0c36",
+      "is_child": false
+    },
+    {
+      "nwk_address": "abbd",
+      "ieee_address": "0c4314fffe5d8539",
+      "is_child": false
+    },
+    {
+      "nwk_address": "ad00",
+      "ieee_address": "881a14fffe13ef6a",
+      "is_child": false
+    },
+    {
+      "nwk_address": "b098",
+      "ieee_address": "b4e3f9fffe152397",
+      "is_child": false
+    },
+    {
+      "nwk_address": "4c18",
+      "ieee_address": "b4e3f9fffed5811e",
+      "is_child": false
+    },
+    {
+      "nwk_address": "a330",
+      "ieee_address": "60a423fffefc937b",
+      "is_child": false
+    },
+    {
+      "nwk_address": "b9f",
+      "ieee_address": "2c1165fffedd29a8",
+      "is_child": false
+    },
+    {
+      "nwk_address": "1052",
+      "ieee_address": "d0cf5efffeda4cd9",
+      "is_child": false
+    },
+    {
+      "nwk_address": "2612",
+      "ieee_address": "000d6ffffe25c4bd",
+      "is_child": false
+    },
+    {
+      "nwk_address": "f83d",
+      "ieee_address": "d0cf5efffec239f8",
+      "is_child": false
+    },
+    {
+      "nwk_address": "c127",
+      "ieee_address": "d0cf5efffec09650",
+      "is_child": false
+    },
+    {
+      "nwk_address": "8040",
+      "ieee_address": "588e81fffe61d378",
+      "is_child": false
+    },
+    {
+      "nwk_address": "ba86",
+      "ieee_address": "842e14fffe4780fc",
+      "is_child": false
+    },
+    {
+      "nwk_address": "7604",
+      "ieee_address": "804b50fffe240a1b",
+      "is_child": false
+    },
+    {
+      "nwk_address": "86f4",
+      "ieee_address": "ec1bbdfffee8a4f7",
+      "is_child": false
+    },
+    {
+      "nwk_address": "c5da",
+      "ieee_address": "ec1bbdfffeeb1847",
+      "is_child": false
+    },
+    {
+      "nwk_address": "cd5e",
+      "ieee_address": "00124b0023204934",
+      "is_child": false
+    },
+    {
+      "nwk_address": "ff4d",
+      "ieee_address": "00124b002228f5df",
+      "is_child": false
+    },
+    {
+      "nwk_address": "1d1b",
+      "ieee_address": "ccccccfffe2a97f8",
+      "is_child": false
+    },
+    {
+      "nwk_address": "7aeb",
+      "ieee_address": "14b457fffe538134",
+      "is_child": false
+    },
+    {
+      "nwk_address": "56d0",
+      "ieee_address": "ccccccfffe5c3c02",
+      "is_child": false
+    },
+    {
+      "nwk_address": "357b",
+      "ieee_address": "60a423fffeef72a2",
+      "is_child": false
+    },
+    {
+      "nwk_address": "e023",
+      "ieee_address": "14b457fffecbbccc",
+      "is_child": false
+    },
+    {
+      "nwk_address": "7054",
+      "ieee_address": "8cf681fffe064770",
+      "is_child": false
+    },
+    {
+      "nwk_address": "2203",
+      "ieee_address": "680ae2fffe368d9e",
+      "is_child": false
+    },
+    {
+      "nwk_address": "8490",
+      "ieee_address": "a4c138115f8d0d90",
+      "is_child": false
+    },
+    {
+      "nwk_address": "bf5c",
+      "ieee_address": "842e14fffe7420dd",
+      "is_child": false
+    },
+    {
+      "nwk_address": "2469",
+      "ieee_address": "a4c1387642fa03b6",
+      "is_child": false
+    },
+    {
+      "nwk_address": "793b",
+      "ieee_address": "60a423fffef8de03",
+      "is_child": false
+    },
+    {
+      "nwk_address": "839",
+      "ieee_address": "bc33acfffe8c2fd6",
+      "is_child": false
+    },
+    {
+      "nwk_address": "7667",
+      "ieee_address": "ec1bbdfffee88fd0",
+      "is_child": false
+    },
+    {
+      "nwk_address": "fa23",
+      "ieee_address": "086bd7fffe4134de",
+      "is_child": false
+    },
+    {
+      "nwk_address": "7faa",
+      "ieee_address": "00124b0022cf8128",
+      "is_child": false
+    },
+    {
+      "nwk_address": "4c58",
+      "ieee_address": "881a14fffe18adfb",
+      "is_child": false
+    },
+    {
+      "nwk_address": "a973",
+      "ieee_address": "08ddebfffed77e8f",
+      "is_child": false
+    },
+    {
+      "nwk_address": "b327",
+      "ieee_address": "881a14fffe13ee76",
+      "is_child": false
+    },
+    {
+      "nwk_address": "c576",
+      "ieee_address": "cc86ecfffe4ab84a",
+      "is_child": false
+    },
+    {
+      "nwk_address": "434d",
+      "ieee_address": "b40ecfd2ad490000",
+      "is_child": false
+    },
+    {
+      "nwk_address": "33c1",
+      "ieee_address": "b40ecfd2e58e0000",
+      "is_child": false
+    },
+    {
+      "nwk_address": "2ac5",
+      "ieee_address": "a81710b7b8430000",
+      "is_child": false
+    },
+    {
+      "nwk_address": "9d10",
+      "ieee_address": "b40ecfd1567f0000",
+      "is_child": false
+    },
+    {
+      "nwk_address": "5b25",
+      "ieee_address": "b40ecfd23c2b0000",
+      "is_child": false
+    }
+  ]
+}
